@@ -5,8 +5,9 @@
 
 #import "ObjectiveCDemoController.h"
 #import "ObjectiveCDemoColorProviding.h"
-#import <FluentUI/FluentUI-Swift.h>
 #import <FluentUI_Demo-Swift.h>
+
+@import FluentUI;
 
 @interface ObjectiveCDemoController () <MSFTwoLineTitleViewDelegate,
                                         UIPopoverPresentationControllerDelegate>

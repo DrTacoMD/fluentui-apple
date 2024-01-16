@@ -4,7 +4,8 @@
 //
 
 #import "TextFieldObjCDemoController.h"
-#import <FluentUI/FluentUI-Swift.h>
+
+@import FluentUI_ios;
 
 @implementation TextFieldObjCDemoController
 

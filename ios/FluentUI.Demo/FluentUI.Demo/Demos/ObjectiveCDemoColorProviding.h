@@ -4,7 +4,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FluentUI/FluentUI-Swift.h>
+
+@import FluentUI_ios;
 
 NS_ASSUME_NONNULL_BEGIN
 

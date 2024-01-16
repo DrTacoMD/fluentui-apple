@@ -4,7 +4,8 @@
 //
 
 #import "PopupMenuObjCDemoController.h"
-#import <FluentUI/FluentUI-Swift.h>
+
+@import FluentUI_ios;
 
 @implementation PopupMenuObjCDemoController
 
