@@ -90,6 +90,7 @@
 		92B45E4E279A1A0B00E72517 /* DemoAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B45E4D279A1A0B00E72517 /* DemoAppearanceController.swift */; };
 		92B7A9A32B56F4E2008C0AE8 /* FluentUI in Frameworks */ = {isa = PBXBuildFile; productRef = 92B7A9A22B56F4E2008C0AE8 /* FluentUI */; };
 		92B7A9A92B570EB1008C0AE8 /* FluentUI in Frameworks */ = {isa = PBXBuildFile; productRef = 92B7A9A82B570EB1008C0AE8 /* FluentUI */; };
+		92D3B7A82B6C733E00742771 /* FluentUI in Frameworks */ = {isa = PBXBuildFile; productRef = 92D3B7A72B6C733E00742771 /* FluentUI */; };
 		92D5598426A1523400328FD3 /* CardNudgeDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5598326A1523400328FD3 /* CardNudgeDemoController.swift */; };
 		92D5FDFD28AC57650087894B /* TypographyTokensDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5FDFC28AC57650087894B /* TypographyTokensDemoController.swift */; };
 		92DD1E8D279F496300FDEE0F /* DemoAppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DD1E8C279F496300FDEE0F /* DemoAppearanceView.swift */; };
@@ -335,6 +336,7 @@
 			files = (
 				92B7A9A32B56F4E2008C0AE8 /* FluentUI in Frameworks */,
 				8F0B81122670200300463726 /* AppCenterDistribute in Frameworks */,
+				92D3B7A82B6C733E00742771 /* FluentUI in Frameworks */,
 				8F0B8114267021A700463726 /* AppCenterAnalytics in Frameworks */,
 				92B7A9A92B570EB1008C0AE8 /* FluentUI in Frameworks */,
 				8F0B8116267021A700463726 /* AppCenterCrashes in Frameworks */,
@@ -628,6 +630,7 @@
 				8F0B8115267021A700463726 /* AppCenterCrashes */,
 				92B7A9A22B56F4E2008C0AE8 /* FluentUI */,
 				92B7A9A82B570EB1008C0AE8 /* FluentUI */,
+				92D3B7A72B6C733E00742771 /* FluentUI */,
 			);
 			productName = OfficeUIFabric.Demo;
 			productReference = A5CEC20C20E436F10016922A /* FluentUI.Demo.app */;
@@ -705,7 +708,7 @@
 			mainGroup = A5CEC20320E436F10016922A;
 			packageReferences = (
 				8F0B81102670200300463726 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
-				92B7A9A72B570EB1008C0AE8 /* XCLocalSwiftPackageReference "../.." */,
+				92D3B7A62B6C733D00742771 /* XCLocalSwiftPackageReference "../.." */,
 			);
 			productRefGroup = A5CEC20D20E436F10016922A /* Products */;
 			projectDirPath = "";
@@ -1328,7 +1331,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		92B7A9A72B570EB1008C0AE8 /* XCLocalSwiftPackageReference "../.." */ = {
+		92D3B7A62B6C733D00742771 /* XCLocalSwiftPackageReference "../.." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../..;
 		};
@@ -1366,6 +1369,10 @@
 			productName = FluentUI;
 		};
 		92B7A9A82B570EB1008C0AE8 /* FluentUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FluentUI;
+		};
+		92D3B7A72B6C733E00742771 /* FluentUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FluentUI;
 		};
