@@ -4,11 +4,14 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: AvatarTitleView
 
 /// A helper view used by `NavigationBar` capable of displaying a large title and an avatar.
-class AvatarTitleView: UIView, TokenizedControlInternal, TwoLineTitleViewDelegate {
+class AvatarTitleView: UIView, TokenizedControl, TwoLineTitleViewDelegate {
     enum Style: Int {
         case primary
         case system
@@ -54,7 +57,7 @@ class AvatarTitleView: UIView, TokenizedControlInternal, TwoLineTitleViewDelegat
     }
 
     var avatarAccessibilityLabel: String? {
-        return avatarCustomAccessibilityLabel ?? "Accessibility.LargeTitle.ProfileView".localized
+        return avatarCustomAccessibilityLabel ?? FluentUIFramework.localized("Accessibility.LargeTitle.ProfileView")
     }
 
     var avatarCustomAccessibilityLabel: String? {

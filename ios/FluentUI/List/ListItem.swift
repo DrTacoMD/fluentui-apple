@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public typealias ListItemAccessoryType = TableViewCellAccessoryType
 public typealias ListItemBackgroundStyleType = TableViewCellBackgroundStyleType
@@ -107,8 +110,8 @@ public struct ListItem<LeadingContent: View,
                         image
                     }
                     .accessibilityIdentifier(AccessibilityIdentifiers.accessoryDetailButton)
-                    .accessibility(label: Text("Accessibility.TableViewCell.MoreActions.Label".localized))
-                    .accessibility(hint: Text("Accessibility.TableViewCell.MoreActions.Hint".localized))
+                    .accessibility(label: Text(FluentUIFramework.localized("Accessibility.TableViewCell.MoreActions.Label")))
+                    .accessibility(hint: Text(FluentUIFramework.localized("Accessibility.TableViewCell.MoreActions.Hint")))
                 } else {
                     image
                         .accessibilityHidden(true)

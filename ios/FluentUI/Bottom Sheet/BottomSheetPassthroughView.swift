@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class BottomSheetPassthroughView: UIView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

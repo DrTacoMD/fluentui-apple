@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 private struct BadgeStringData {
     let text: String
@@ -78,7 +81,7 @@ func extractBadgeStrings(from text: String, badgingCharacters: String, hardBadgi
         }
     }
 
-    return badgeStrings.map({ $0.trimmed() }).compactMap({ $0.isEmpty ? nil : $0 })
+    return badgeStrings.map({ FluentStringHelpers.trimmed($0) }).compactMap({ $0.isEmpty ? nil : $0 })
 }
 
 private func possibleBadgingStrings(badgingCharacters: String, text: String) -> [BadgeStringData] {

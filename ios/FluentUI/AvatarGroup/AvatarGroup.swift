@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Properties that can be used to customize the appearance of the AvatarGroup.
 @objc public protocol MSFAvatarGroupState {
@@ -271,7 +274,7 @@ public struct AvatarGroup: View, TokenizedControlView {
         }
         let overflowCount = state.avatars.count - avatarsToDisplay + state.overflowCount
         if overflowCount > 0 {
-            labels.append(String(format: "Accessibility.AvatarGroup.Overflow.Value".localized, overflowCount))
+            labels.append(String(format: FluentUIFramework.localized("Accessibility.AvatarGroup.Overflow.Value"), overflowCount))
         }
         return labels
     }
@@ -284,18 +287,18 @@ public struct AvatarGroup: View, TokenizedControlView {
 
         var str: String = ""
         for i in 0..<displayedAvatarCount - 1 {
-            str += String(format: "Accessibility.AvatarGroup.AvatarList".localized, displayedAvatarAccessibilityLabels[i])
+            str += String(format: FluentUIFramework.localized("Accessibility.AvatarGroup.AvatarList"), displayedAvatarAccessibilityLabels[i])
         }
-        str += String(format: "Accessibility.AvatarGroup.AvatarListLast".localized, displayedAvatarAccessibilityLabels.last ?? "")
+        str += String(format: FluentUIFramework.localized("Accessibility.AvatarGroup.AvatarListLast"), displayedAvatarAccessibilityLabels.last ?? "")
 
         if state.isUnread {
-            str = String(format: "Accessibility.TabBarItemView.UnreadFormat".localized, str)
+            str = String(format: FluentUIFramework.localized("Accessibility.TabBarItemView.UnreadFormat"), str)
         }
 
         return str
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Environment(\.layoutDirection) var layoutDirection: LayoutDirection
     @ObservedObject var state: MSFAvatarGroupStateImpl
 

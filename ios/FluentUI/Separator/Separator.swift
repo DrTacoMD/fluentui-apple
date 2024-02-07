@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: - SeparatorOrientation
 
@@ -16,7 +19,7 @@ public enum SeparatorOrientation: Int {
 // MARK: - Separator
 
 @objc(MSFSeparator)
-open class Separator: UIView, TokenizedControlInternal {
+open class Separator: UIView, TokenizedControl {
     public typealias TokenSetKeyType = SeparatorTokenSet.Tokens
     lazy public var tokenSet: SeparatorTokenSet = .init()
 

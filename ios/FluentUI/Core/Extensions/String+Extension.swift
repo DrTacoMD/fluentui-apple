@@ -5,27 +5,23 @@
 
 import UIKit
 
-extension String {
-    internal var localized: String {
-        return NSLocalizedString(self, bundle: FluentUIFramework.resourceBundle, comment: "")
-    }
-
-    func trimmed() -> String {
+public struct FluentStringHelpers {
+    public static func trimmed(_ string: String) -> String {
         var whitespace = CharacterSet(charactersIn: "\u{200B}") // Zero-width space
         whitespace.formUnion(CharacterSet.whitespacesAndNewlines)
-        return trimmingCharacters(in: whitespace)
+        return string.trimmingCharacters(in: whitespace)
     }
 
-    func preferredSize(for font: UIFont, width: CGFloat = .greatestFiniteMagnitude, numberOfLines: Int = 0) -> CGSize {
+    public static func preferredSize(_ string: String, for font: UIFont, width: CGFloat = .greatestFiniteMagnitude, numberOfLines: Int = 0) -> CGSize {
         let lineHeightWithLeading = ceil(font.lineHeight + max(0, font.leading))
         if numberOfLines == 1 {
             return CGSize(
-                width: ceil(min(self.size(withAttributes: [.font: font]).width, width)),
+                width: ceil(min(string.size(withAttributes: [.font: font]).width, width)),
                 height: lineHeightWithLeading
             )
         }
         let maxHeight = numberOfLines > 1 ? lineHeightWithLeading * CGFloat(numberOfLines) : .greatestFiniteMagnitude
-        let rect = self.boundingRect(
+        let rect = string.boundingRect(
             with: CGSize(width: width, height: maxHeight),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: [.font: font],

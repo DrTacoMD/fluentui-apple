@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Delegate protocol to handle user events inside the side tab bar.
 @objc(MSFSideTabBarDelegate)
@@ -23,7 +26,7 @@ public protocol SideTabBarDelegate {
 /// View for a vertical side tab bar that can be used for app navigation.
 /// Optimized for horizontal regular + vertical regular size class configuration. Prefer using TabBarView for other size class configurations.
 @objc(MSFSideTabBar)
-open class SideTabBar: UIView, TokenizedControlInternal {
+open class SideTabBar: UIView, TokenizedControl {
     /// Delegate to handle user interactions in the side tab bar.
     @objc public weak var delegate: SideTabBarDelegate? {
         didSet {
@@ -45,7 +48,7 @@ open class SideTabBar: UIView, TokenizedControlInternal {
             if let avatar = avatar {
                 let avatarState = avatar.state
                 avatarState.size = .size32
-                avatarState.accessibilityLabel = "Accessibility.LargeTitle.ProfileView".localized
+                avatarState.accessibilityLabel = FluentUIFramework.localized("Accessibility.LargeTitle.ProfileView")
                 avatarState.hasButtonAccessibilityTrait = delegate != nil
 
                 let avatarView = avatar

@@ -5,6 +5,9 @@
 
 import Combine
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Base class that allows for customization of global, alias, and control tokens.
 @objc(MSFFluentTheme)

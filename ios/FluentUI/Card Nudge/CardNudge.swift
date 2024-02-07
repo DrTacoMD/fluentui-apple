@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Type of callback for both action and dismiss buttons.
 public typealias CardNudgeButtonAction = ((_ state: MSFCardNudgeState) -> Void)
@@ -51,7 +54,7 @@ public struct CardNudge: View, TokenizedControlView {
     public typealias TokenSetKeyType = CardNudgeTokenSet.Tokens
     @ObservedObject public var tokenSet: CardNudgeTokenSet
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFCardNudgeStateImpl
 
     @ViewBuilder
@@ -131,8 +134,8 @@ public struct CardNudge: View, TokenizedControlView {
                 .hoverEffect()
             }
             if let dismissAction = state.dismissButtonAction {
-                let dismissImage = UIImage.staticImageNamed("dismiss-20x20")
-                let dismissLabel = "Accessibility.Dismiss.Label".localized
+                let dismissImage = FluentUIFramework.staticImageNamed("dismiss-20x20")
+                let dismissLabel = FluentUIFramework.localized("Accessibility.Dismiss.Label")
                 SwiftUI.Button(action: {
                     dismissAction(state)
                 }, label: {

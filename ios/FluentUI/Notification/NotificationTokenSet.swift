@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Pre-defined styles of the notification
 @objc public enum MSFNotificationStyle: Int, CaseIterable {

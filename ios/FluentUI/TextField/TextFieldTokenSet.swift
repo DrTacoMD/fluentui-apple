@@ -4,6 +4,9 @@
 //
 
 import CoreFoundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// The predefined states of the `FluentTextField`.
 public enum FluentTextFieldState: Int, CaseIterable {

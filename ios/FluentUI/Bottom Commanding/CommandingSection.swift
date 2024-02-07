@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// A named container of `CommandingItem` objects.
 @objc(MSFCommandingSection)

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Shimmer style can be either concealing or revealing.
 /// The style affects the default shimmer alpha value and the default shimmer tint color.

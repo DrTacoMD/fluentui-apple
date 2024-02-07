@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// UIKit wrapper that exposes the SwiftUI AvatarGroup implementation.
 @objc open class MSFAvatarGroup: ControlHostingView {

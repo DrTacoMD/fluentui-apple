@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public extension CardNudge {
     /// Optional subtext to draw below the main title area.

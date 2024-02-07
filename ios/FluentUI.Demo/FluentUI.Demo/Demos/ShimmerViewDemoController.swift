@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import FluentUI_Core_iOS
 
 class ShimmerViewDemoController: DemoController {
 	override func viewDidLoad() {

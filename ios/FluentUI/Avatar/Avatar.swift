@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Properties that can be used to customize the appearance of the Avatar.
 @objc public protocol MSFAvatarState {
@@ -162,7 +165,7 @@ public struct Avatar: View, TokenizedControlView {
         let avatarImageInfo: (image: UIImage?, renderingMode: Image.TemplateRenderingMode) = {
             if shouldUseDefaultImage {
                 let isOutlinedStyle = style == .outlined || style == .outlinedPrimary
-                return (UIImage.staticImageNamed(isOutlinedStyle ? "person_48_regular" : "person_48_filled"), .template)
+                return (FluentUIFramework.staticImageNamed(isOutlinedStyle ? "person_48_regular" : "person_48_filled"), .template)
             }
 
             return (state.image, .original)
@@ -176,7 +179,7 @@ public struct Avatar: View, TokenizedControlView {
 
             let defaultAccessibilityText = state.primaryText ?? state.secondaryText ?? ""
             return (state.isOutOfOffice ?
-                        String.localizedStringWithFormat("Accessibility.AvatarView.LabelFormat".localized, defaultAccessibilityText, "Presence.OOF".localized) :
+                        String.localizedStringWithFormat(FluentUIFramework.localized("Accessibility.AvatarView.LabelFormat"), defaultAccessibilityText, FluentUIFramework.localized("Presence.OOF")) :
                         defaultAccessibilityText)
         }()
 
@@ -414,7 +417,7 @@ public struct Avatar: View, TokenizedControlView {
         return AvatarTokenSet.avatarSize(state.size)
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Environment(\.layoutDirection) var layoutDirection: LayoutDirection
     @ObservedObject var state: MSFAvatarStateImpl
 
@@ -445,7 +448,7 @@ public struct Avatar: View, TokenizedControlView {
         // Use the leading character from the first two words in the user's name
         let nameComponents = text.components(separatedBy: " ")
         for nameComponent: String in nameComponents {
-            let trimmedName = nameComponent.trimmed()
+            let trimmedName = FluentStringHelpers.trimmed(nameComponent)
             if trimmedName.count < 1 {
                 continue
             }

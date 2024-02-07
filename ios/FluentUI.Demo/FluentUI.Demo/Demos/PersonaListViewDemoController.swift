@@ -5,6 +5,9 @@
 
 import FluentUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 let samplePersonas: [PersonaData] = [
     PersonaData(name: "Kat Larsson", email: "kat.larsson@contoso.com", subtitle: "Designer", image: UIImage(named: "avatar_kat_larsson")),

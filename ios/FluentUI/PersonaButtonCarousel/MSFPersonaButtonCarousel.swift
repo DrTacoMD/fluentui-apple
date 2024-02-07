@@ -5,6 +5,9 @@
 
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// UIKit wrapper that exposes the SwiftUI PersonaButtonCarousel implementation
 @objc open class MSFPersonaButtonCarousel: ControlHostingView {

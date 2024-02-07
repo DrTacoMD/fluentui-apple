@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: BadgeFieldDelegate
 @objc(MSFBadgeFieldDelegate)
@@ -57,7 +60,7 @@ public protocol BadgeFieldDelegate: AnyObject {
  * voiceover and dynamic text sizing
  */
 @objc(MSFBadgeField)
-open class BadgeField: UIView, TokenizedControlInternal {
+open class BadgeField: UIView, TokenizedControl {
     private struct Constants {
         static let emptyTextFieldString: String = ""
         static let dragAndDropMinimumPressDuration: TimeInterval = 0.2
@@ -734,7 +737,10 @@ open class BadgeField: UIView, TokenizedControlInternal {
     // MARK: Text field
 
     @objc open var textFieldContent: String {
-        return textField.text?.trimmed() ?? ""
+        guard let text = textField.text else {
+            return ""
+        }
+        return FluentStringHelpers.trimmed(text)
     }
 
     @objc open func resetTextFieldContent() {
@@ -770,7 +776,7 @@ open class BadgeField: UIView, TokenizedControlInternal {
     private func updateLabelsVisibility(textFieldContent: String? = nil) {
         var textFieldContent = textFieldContent ?? self.textFieldContent
         // does not trim textFieldContent if it only contains whitespace
-        textFieldContent = textFieldContent.trimmingCharacters(in: .whitespaces) == "" ? textFieldContent : textFieldContent.trimmed()
+        textFieldContent = textFieldContent.trimmingCharacters(in: .whitespaces) == "" ? textFieldContent : FluentStringHelpers.trimmed(textFieldContent)
         labelView.isHidden = label.isEmpty
         placeholderView.isHidden = !labelView.isHidden || !badges.isEmpty || !textFieldContent.isEmpty
         setNeedsLayout()
@@ -1170,7 +1176,7 @@ extension BadgeField: UITextFieldDelegate {
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.textField {
-            if let text = textField.text, text.trimmed().isEmpty {
+            if let text = textField.text, FluentStringHelpers.trimmed(text).isEmpty {
                 let shouldReturn = badgeFieldDelegate?.badgeFieldShouldReturn?(self) ?? true
                 if shouldReturn {
                     resignFirstResponder()
@@ -1193,10 +1199,9 @@ extension BadgeField: UITextFieldDelegate {
             deleteSelectedBadge(fromUserAction: true)
             // Insert the new char at beginning of text field
             if let formerTextFieldText = self.textField.text {
-                let newTextFieldText = NSMutableString(string: formerTextFieldText)
-                newTextFieldText.insert(string, at: 0)
-                self.textField.text = newTextFieldText as String
-                badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: self.textField.text!.trimmed())
+                let newTextFieldText = string.appending(formerTextFieldText)
+                self.textField.text = newTextFieldText
+                badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: FluentStringHelpers.trimmed(newTextFieldText))
             }
             updateLabelsVisibility()
             self.textField.becomeFirstResponder()
@@ -1216,7 +1221,7 @@ extension BadgeField: UITextFieldDelegate {
                 if !didBadge {
                     // Placeholder
                     updateLabelsVisibility(textFieldContent: newString)
-                    badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: newString.trimmed())
+                    badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: FluentStringHelpers.trimmed(newString))
                 }
                 return !didBadge
             }
@@ -1227,14 +1232,14 @@ extension BadgeField: UITextFieldDelegate {
             if string.isEmpty {
                 // Delete on selected text: delete selection
                 if textField.selectedTextRange?.isEmpty == false {
-                    badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: newString.trimmed())
+                    badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: FluentStringHelpers.trimmed(newString))
                     return true
                 }
 
                 // Delete backward on a single character: delete character
                 let textPositionValue = textField.offset(from: textField.beginningOfDocument, to: textField.selectedTextRange!.start)
                 if textPositionValue != Constants.emptyTextFieldString.count {
-                    badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: newString.trimmed())
+                    badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: FluentStringHelpers.trimmed(newString))
                     return true
                 }
 
@@ -1246,7 +1251,7 @@ extension BadgeField: UITextFieldDelegate {
                 return false
             }
 
-            badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: newString.trimmed())
+            badgeFieldDelegate?.badgeField?(self, willChangeTextFieldContentWithText: FluentStringHelpers.trimmed(newString))
         }
         return true
     }

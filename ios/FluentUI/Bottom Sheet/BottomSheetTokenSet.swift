@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum BottomSheetToken: Int, TokenSetKey {
     /// Defines the background color of the `BottomSheetController`.

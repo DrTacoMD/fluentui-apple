@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Internal subclass of UITextField that allows us to adjust the position of the `rightView`.
 class FluentTextFieldInternal: UITextField {
@@ -38,8 +41,8 @@ class FluentTextFieldInternal: UITextField {
     let trailingViewSize: CGFloat = TextFieldTokenSet.iconSize
     var clearButton: Button = {
         let button = Button(style: .subtle)
-        button.image = UIImage.staticImageNamed("ic_fluent_dismiss_circle_24_regular")
-        button.accessibilityLabel = "Accessibility.TextField.ClearText".localized
+        button.image = FluentUIFramework.staticImageNamed("ic_fluent_dismiss_circle_24_regular")
+        button.accessibilityLabel = FluentUIFramework.localized("Accessibility.TextField.ClearText")
         button.edgeInsets = .zero
         return button
     }()

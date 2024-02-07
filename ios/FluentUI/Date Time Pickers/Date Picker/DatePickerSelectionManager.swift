@@ -4,6 +4,9 @@
 //
 
 import Foundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: DatePickerSelectionManager
 

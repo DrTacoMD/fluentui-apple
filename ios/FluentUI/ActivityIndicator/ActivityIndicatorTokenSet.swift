@@ -5,6 +5,9 @@
 
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Pre-defined sizes of the Activity Indicator.
 @objc public enum MSFActivityIndicatorSize: Int, CaseIterable {

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: DateTimePickerControllerMode
 
@@ -176,11 +179,11 @@ class DateTimePickerController: UIViewController, GenericDateTimePicker {
     private func initSegmentedControl(includesTime: Bool) {
         let items: [SegmentItem]
         if includesTime {
-            items = [SegmentItem(title: customStartTabTitle ?? "MSDateTimePicker.StartTime".localized),
-                     SegmentItem(title: customEndTabTitle ?? "MSDateTimePicker.EndTime".localized)]
+            items = [SegmentItem(title: customStartTabTitle ?? FluentUIFramework.localized("MSDateTimePicker.StartTime")),
+                     SegmentItem(title: customEndTabTitle ?? FluentUIFramework.localized("MSDateTimePicker.EndTime"))]
         } else {
-            items = [SegmentItem(title: customStartTabTitle ?? "MSDateTimePicker.StartDate".localized),
-                     SegmentItem(title: customEndTabTitle ?? "MSDateTimePicker.EndDate".localized)]
+            items = [SegmentItem(title: customStartTabTitle ?? FluentUIFramework.localized("MSDateTimePicker.StartDate")),
+                     SegmentItem(title: customEndTabTitle ?? FluentUIFramework.localized("MSDateTimePicker.EndDate"))]
         }
         let segmentedControl = SegmentedControl(items: items, style: traitCollection.userInterfaceStyle == .dark ? .brandOverNavBarPill : .neutralOverNavBarPill)
         segmentedControl.onSelectAction = { [weak self] (_, index) in

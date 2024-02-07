@@ -3,6 +3,9 @@
 //  Licensed under the MIT License.
 //
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum TableViewHeaderFooterViewToken: Int, TokenSetKey {
     /// The background color in plain mode.

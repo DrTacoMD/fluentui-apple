@@ -3,10 +3,5 @@
 //  Licensed under the MIT License.
 //
 
-import SwiftUI
-#if SWIFT_MODULE
-import FluentUI_Core_iOS
-#endif
+import UIKit
 
-public extension PersonaButton {
-}

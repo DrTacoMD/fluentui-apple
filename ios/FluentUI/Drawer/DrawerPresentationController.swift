@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: - DrawerPresentationDelegate
 
@@ -58,8 +61,8 @@ class DrawerPresentationController: UIPresentationController {
             view.accessibilityElements = [passThroughView]
         } else {
             view.isAccessibilityElement = true
-            view.accessibilityLabel = "Accessibility.Dismiss.Label".localized
-            view.accessibilityHint = "Accessibility.Dismiss.Hint".localized
+            view.accessibilityLabel = FluentUIFramework.localized("Accessibility.Dismiss.Label")
+            view.accessibilityHint = FluentUIFramework.localized("Accessibility.Dismiss.Hint")
             view.accessibilityTraits = .button
         }
         view.backgroundColor = .clear
@@ -139,7 +142,7 @@ class DrawerPresentationController: UIPresentationController {
                 focusElement = contentView
             }
             UIAccessibility.post(notification: .screenChanged, argument: focusElement)
-            UIAccessibility.post(notification: .announcement, argument: "Accessibility.Alert".localized)
+            UIAccessibility.post(notification: .announcement, argument: FluentUIFramework.localized("Accessibility.Alert"))
         } else {
             separator.removeFromSuperview()
             removePresentedViewMask()

@@ -3,6 +3,9 @@
 //  Licensed under the MIT License.
 //
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class SegmentPillButton: UIButton {
     var isUnreadDotVisible: Bool = false {
@@ -10,7 +13,7 @@ class SegmentPillButton: UIButton {
             if oldValue != isUnreadDotVisible {
                 if isUnreadDotVisible {
                     self.layer.addSublayer(unreadDotLayer)
-                    accessibilityLabel = String(format: "Accessibility.TabBarItemView.UnreadFormat".localized, item.title)
+                    accessibilityLabel = String(format: FluentUIFramework.localized("Accessibility.TabBarItemView.UnreadFormat"), item.title)
                 } else {
                     unreadDotLayer.removeFromSuperlayer()
                     accessibilityLabel = item.title

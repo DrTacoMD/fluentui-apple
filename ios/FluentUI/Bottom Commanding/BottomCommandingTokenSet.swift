@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum BottomCommandingToken: Int, TokenSetKey {
     /// Defines the color of the background of the `BottomCommandingController`.

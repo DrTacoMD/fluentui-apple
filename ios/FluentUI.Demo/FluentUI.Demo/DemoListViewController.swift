@@ -5,6 +5,9 @@
 
 import FluentUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class DemoListViewController: DemoTableViewController {
     public var theme: DemoColorTheme = DemoColorTheme.default {

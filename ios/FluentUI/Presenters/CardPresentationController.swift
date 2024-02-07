@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class CardPresentationController: UIPresentationController {
     // Workaround to get Voiceover to ignore the view behind the action sheet.

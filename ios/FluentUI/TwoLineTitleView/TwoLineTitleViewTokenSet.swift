@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum TwoLineTitleViewToken: Int, TokenSetKey {
     /// Describes the color of the subtitle.

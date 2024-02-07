@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: - CardPresentable
 
@@ -50,8 +53,8 @@ open class PageCardPresenterController: UIViewController {
     private let dismissView: UIView = {
         let view = UIView()
         view.isAccessibilityElement = true
-        view.accessibilityLabel = "Accessibility.Dismiss.Label".localized
-        view.accessibilityHint = "Accessibility.Dismiss.Hint".localized
+        view.accessibilityLabel = FluentUIFramework.localized("Accessibility.Dismiss.Label")
+        view.accessibilityHint = FluentUIFramework.localized("Accessibility.Dismiss.Hint")
         view.accessibilityTraits = .button
         return view
     }()

@@ -5,6 +5,9 @@
 
 import FluentUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class TableViewSampleData {
     struct Section {

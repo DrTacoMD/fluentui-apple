@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class BadgeLabelButton: UIButton {
 
@@ -247,7 +250,7 @@ class BadgeLabelButton: UIButton {
         }
         if let badgeAccessibilityLabel = item.badgeAccessibilityLabel {
             if let itemAccessibilityLabel = item.accessibilityLabel {
-                accessibilityLabel = String.localizedStringWithFormat("Accessibility.BadgeLabelButton.LabelFormat".localized,
+                accessibilityLabel = String.localizedStringWithFormat(FluentUIFramework.localized("Accessibility.BadgeLabelButton.LabelFormat"),
                                                                       itemAccessibilityLabel,
                                                                       badgeAccessibilityLabel)
             } else {

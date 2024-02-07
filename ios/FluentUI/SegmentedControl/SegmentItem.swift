@@ -4,6 +4,9 @@
 //
 import Foundation
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Used for SegmentedControl array of views
 @objc(MSFSegmentItem)

@@ -32,7 +32,7 @@ public class FluentUIFramework: NSObject {
         initializeAppearance(with: primaryColor)
     }
 
-    enum NavigationBarStyle {
+    public enum NavigationBarStyle {
         case normal
         case dateTimePicker
 
@@ -84,7 +84,20 @@ public class FluentUIFramework: NSObject {
         progressViewAppearance.trackTintColor = fluentTheme.color(.stroke1)
     }
 
-    static func initializeUINavigationBarAppearance(_ navigationBar: UINavigationBar, traits: UITraitCollection? = nil, navigationBarStyle: NavigationBarStyle = .normal, fluentTheme: FluentTheme? = nil) {
+    @objc public static func localized(_ string: String) -> String {
+        return NSLocalizedString(string, bundle: resourceBundle, comment: "")
+    }
+
+    @objc public static func staticImageNamed(_ name: String) -> UIImage? {
+        guard let image = UIImage(named: name,
+                                  in: resourceBundle,
+                                  compatibleWith: nil) else {
+            preconditionFailure("Missing image asset with name: \(name)")
+        }
+        return image
+    }
+
+    public static func initializeUINavigationBarAppearance(_ navigationBar: UINavigationBar, traits: UITraitCollection? = nil, navigationBarStyle: NavigationBarStyle = .normal, fluentTheme: FluentTheme? = nil) {
         navigationBar.isTranslucent = false
 
         let standardAppearance = navigationBar.standardAppearance
@@ -108,7 +121,7 @@ public class FluentUIFramework: NSObject {
             standardAppearance.shadowColor = .clear
         }
 
-        navigationBar.backIndicatorImage = UIImage.staticImageNamed("back-24x24")
+        navigationBar.backIndicatorImage = FluentUIFramework.staticImageNamed("back-24x24")
         navigationBar.backIndicatorTransitionMaskImage = navigationBar.backIndicatorImage
 
         // Update the scroll edge appearance to match the new standard appearance

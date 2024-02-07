@@ -3,6 +3,9 @@
 //  Licensed under the MIT License.
 //
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum TableViewCellToken: Int, TokenSetKey {
     /// The background color of the TableView.
@@ -219,8 +222,8 @@ extension TableViewCellTokenSet {
     /// The size dimensions of the unreadDotLayer.
     static let unreadDotDimensions: CGFloat = 8.0
 
-    static let selectionImageOff = UIImage.staticImageNamed("selection-off")
-    static let selectionImageOn = UIImage.staticImageNamed("selection-on")
+    static let selectionImageOff = FluentUIFramework.staticImageNamed("selection-off")
+    static let selectionImageOn = FluentUIFramework.staticImageNamed("selection-on")
 
     /// The minimum height for the title label.
     static let titleHeight: CGFloat = 22.0

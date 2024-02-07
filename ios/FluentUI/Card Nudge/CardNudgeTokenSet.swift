@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Style to draw the `CardNudge` control.
 @objc public enum MSFCardNudgeStyle: Int, CaseIterable {

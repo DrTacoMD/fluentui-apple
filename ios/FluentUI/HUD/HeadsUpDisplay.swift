@@ -4,6 +4,57 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
+
+/// Modifier that provides a completion closure for an animation on a given animatable value.
+struct AnimationCompletionModifier<Value>: AnimatableModifier where Value: VectorArithmetic {
+
+    func body(content: Content) -> some View {
+        content
+    }
+
+    init(animatableValue: Value, onComplete: @escaping () -> Void) {
+        self.onComplete = onComplete
+        animatableData = animatableValue
+        targetValue = animatableValue
+    }
+
+    var animatableData: Value {
+        didSet {
+            notifyCompletionIfFinished()
+        }
+    }
+
+    private var onComplete: () -> Void
+    private var targetValue: Value
+
+    private func notifyCompletionIfFinished() {
+        guard animatableData == targetValue else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.onComplete()
+        }
+    }
+}
+
+extension View {
+
+    /// Executes the `onComplete` closure when an animation is completed for a given animatable value.
+    /// - Parameters:
+    ///   - animatableValue: The animatable value that is bound to the animation.
+    ///   - completion: Closure that will be executed once the animation is completed.
+    /// - Returns: A modified `View` with the completion mechanism. No changes are made to the layout or rendering of the view.
+    func onAnimationComplete<Value: VectorArithmetic>(for animatableValue: Value,
+                                                      onComplete: @escaping () -> Void) -> ModifiedContent<Self, AnimationCompletionModifier<Value>> {
+        modifier(AnimationCompletionModifier(animatableValue: animatableValue,
+                                             onComplete: onComplete))
+    }
+}
+
 
 /// Defines the content type of the Heads-up display.
 /// The `.activity` value will make the HUD display an Activity Indicator.
@@ -65,9 +116,9 @@ public struct HeadsUpDisplay: View, TokenizedControlView {
                         case .custom(let image):
                             return image.withRenderingMode(.alwaysTemplate)
                         case .failure:
-                            return UIImage.staticImageNamed("dismiss-36x36")!
+                            return FluentUIFramework.staticImageNamed("dismiss-36x36")!
                         case.success:
-                            return UIImage.staticImageNamed("checkmark-36x36")!
+                            return FluentUIFramework.staticImageNamed("checkmark-36x36")!
                         }
                     }()
 
@@ -100,7 +151,7 @@ public struct HeadsUpDisplay: View, TokenizedControlView {
                 .cornerRadius(tokenSet[.cornerRadius].float)
         )
         .contentShape(Rectangle())
-        .onChange_iOS17(of: isPresented) { present in
+        .fluent_onChange_iOS17(of: isPresented) { present in
             if present {
                 presentAnimated()
             } else {
@@ -144,7 +195,7 @@ public struct HeadsUpDisplay: View, TokenizedControlView {
         }
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Binding var isPresented: Bool
     @ObservedObject var state: MSFHUDStateImpl
 

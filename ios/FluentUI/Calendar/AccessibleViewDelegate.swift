@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /**
  AccessibleViewDelegate is used to pass responsibility for built in accessibility methods from a view to its parent view controller.

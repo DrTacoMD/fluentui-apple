@@ -4,12 +4,15 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: - Label
 
 /// By default, `adjustsFontForContentSizeCategory` is set to true to automatically update its font when device's content size category changes
 @objc(MSFLabel)
-open class Label: UILabel, TokenizedControlInternal {
+open class Label: UILabel, TokenizedControl {
     private static let defaultColorForTheme: (FluentTheme) -> UIColor = TextColorStyle.regular.uiColor
 
     @objc open var colorStyle: TextColorStyle {

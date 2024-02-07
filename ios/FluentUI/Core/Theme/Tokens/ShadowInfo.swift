@@ -6,6 +6,9 @@
 import CoreGraphics
 import UIKit
 import Foundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Represents a two-part shadow as used by FluentUI.
 @objc(MSFShadowInfo)

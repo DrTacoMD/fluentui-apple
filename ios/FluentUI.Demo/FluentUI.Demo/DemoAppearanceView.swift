@@ -5,6 +5,9 @@
 
 import FluentUI
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// This class displays the contents of the DemoAppearance popover. All actions are callback-based, allowing a
 /// wrapping component, DemoAppearanceController, to manage interop with our UIKit environment.

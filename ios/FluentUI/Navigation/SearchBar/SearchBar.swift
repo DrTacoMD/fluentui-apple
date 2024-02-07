@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: SearchBarDelegate
 
@@ -22,7 +25,7 @@ public protocol SearchBarDelegate: AnyObject {
 
 /// Drop-in replacement for UISearchBar that allows for more customization
 @objc(MSFSearchBar)
-open class SearchBar: UIView, TokenizedControlInternal {
+open class SearchBar: UIView, TokenizedControl {
     @objc open var hidesNavigationBarDuringSearch: Bool = true {
         didSet {
             if oldValue != hidesNavigationBarDuringSearch && isActive {
@@ -75,7 +78,7 @@ open class SearchBar: UIView, TokenizedControlInternal {
     // Leading-edge aligned Icon
     private lazy var searchIconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage.staticImageNamed("search-20x20")
+        imageView.image = FluentUIFramework.staticImageNamed("search-20x20")
         imageView.contentMode = .scaleToFill
         return imageView
     }()
@@ -117,7 +120,7 @@ open class SearchBar: UIView, TokenizedControlInternal {
     private lazy var clearButton: UIButton = {
         let clearButton = UIButton()
         clearButton.addTarget(self, action: #selector(SearchBar.clearButtonTapped(sender:)), for: .touchUpInside)
-        clearButton.setImage(UIImage.staticImageNamed("search-clear"), for: .normal)
+        clearButton.setImage(FluentUIFramework.staticImageNamed("search-clear"), for: .normal)
         clearButton.isHidden = true
 
         clearButton.isPointerInteractionEnabled = true
@@ -135,7 +138,7 @@ open class SearchBar: UIView, TokenizedControlInternal {
     // hidden when the textfield is not active
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Common.Cancel".localized, for: .normal)
+        button.setTitle(FluentUIFramework.localized("Common.Cancel"), for: .normal)
         button.addTarget(self, action: #selector(SearchBar.cancelButtonTapped(sender:)), for: .touchUpInside)
         button.alpha = 0.0
         button.showsLargeContentViewer = true

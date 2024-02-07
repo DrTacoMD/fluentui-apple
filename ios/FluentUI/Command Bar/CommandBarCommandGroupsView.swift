@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class CommandBarCommandGroupsView: UIView {
     init(itemGroups: [CommandBarItemGroup]? = nil, buttonsPersistSelection: Bool = true, tokenSet: CommandBarTokenSet) {

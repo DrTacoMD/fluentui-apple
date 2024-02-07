@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 extension UIImage {
     class func staticImageNamed(_ name: String) -> UIImage? {

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Contains all information necessary to determine desired height of content inside of a container.
 @objc(MSFContentHeightResolutionContext)

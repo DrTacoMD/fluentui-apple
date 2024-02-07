@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// A platform-agnostic representation of a 32-bit RGBA color value.
 @available(*, deprecated, message: "Please use UIColor or Color directly.")

@@ -6,6 +6,9 @@
 import FluentUI
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Callbacks for changes to a `DemoAppearanceView` via the `DemoAppearanceController`. This delegate should
 /// ensure that the appropriate token overrides are set when these callbacks are received.

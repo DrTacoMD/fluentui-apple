@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum DrawerToken: Int, TokenSetKey {
     /// Corner radius for the popover style `Drawer` control.

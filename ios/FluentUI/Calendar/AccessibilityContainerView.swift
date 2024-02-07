@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// This is a container that forwards the calls to the tableview to create an adjustable picker.
 /// Making the tableView adjustable directly does not work. Tableviews and cells have a weird way of working with accessibility

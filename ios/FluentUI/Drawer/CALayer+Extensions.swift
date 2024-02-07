@@ -5,6 +5,9 @@
 
 import QuartzCore
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 extension CALayer {
     var roundedCorners: UIRectCorner {

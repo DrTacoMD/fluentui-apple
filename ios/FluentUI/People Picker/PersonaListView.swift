@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: PersonaListViewSelectionDirection
 
@@ -162,7 +165,7 @@ open class PersonaListView: UITableView {
         // Call searchDirectoryDelegate and show result text on completion
         searchDirectoryDelegate?.personaListSearchDirectory(self, completion: { success in
             if success {
-                self.searchResultText = String(format: "%d results found from directory".localized, self.personaList.count)
+                self.searchResultText = String(format: FluentUIFramework.localized("%d results found from directory"), self.personaList.count)
             }
         })
         searchDirectoryState = .idle
@@ -206,7 +209,7 @@ extension PersonaListView: UITableViewDataSource {
             cell.isUserInteractionEnabled = isPersonaSelectable
             cell.backgroundStyleType = .clear
             cell.accessibilityTraits = isPersonaSelectable ? .button : .none
-            cell.accessibilityHint = String.localizedStringWithFormat( "Accessibility.TabBarItemView.Hint".localized, index + 1, personaList.count)
+            cell.accessibilityHint = String.localizedStringWithFormat( FluentUIFramework.localized("Accessibility.TabBarItemView.Hint"), index + 1, personaList.count)
             return cell
         case .searchDirectory:
             switch searchDirectoryState {
@@ -225,7 +228,7 @@ extension PersonaListView: UITableViewDataSource {
                 guard let cell = dequeueReusableCell(withIdentifier: ActionsCell.identifier, for: indexPath) as? ActionsCell else {
                     return UITableViewCell()
                 }
-                cell.setup(action1Title: "MSPersonaListView.SearchDirectory".localized)
+                cell.setup(action1Title: FluentUIFramework.localized("MSPersonaListView.SearchDirectory"))
                 cell.action1Button.addTarget(self, action: #selector(searchDirectoryButtonTapped), for: .touchUpInside)
                 cell.accessibilityTraits = .button
                 return cell

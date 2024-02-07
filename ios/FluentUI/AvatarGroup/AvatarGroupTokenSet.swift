@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum AvatarGroupToken: Int, TokenSetKey {
     /// Defines the color around the unread dot.

@@ -4,6 +4,9 @@
 //
 
 import Foundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 extension Calendar {
     private static let sharedAutoUpdatingCalendar: Calendar = .autoupdatingCurrent

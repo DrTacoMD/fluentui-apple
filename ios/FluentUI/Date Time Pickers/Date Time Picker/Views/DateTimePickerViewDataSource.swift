@@ -4,6 +4,9 @@
 //
 
 import Foundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: DateTimePickerViewDataSourceConstants
 
@@ -134,7 +137,7 @@ private class DateTimePickerViewMonthDataSource: DateTimePickerViewDataSource {
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.Month.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.Month.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -210,7 +213,7 @@ private class DateTimePickerViewDayDataSource: DateTimePickerViewDataSourceWithD
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.Day.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.Day.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -264,7 +267,7 @@ private class DateTimePickerViewYearDataSource: DateTimePickerViewDataSource {
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.Year.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.Year.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -337,7 +340,7 @@ private class DateTimePickerViewDateDataSource: DateTimePickerViewDataSource {
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.Date.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.Date.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -389,12 +392,12 @@ private class DateTimePickerViewHourDataSource: DateTimePickerViewDataSource {
             return nil
         }
 
-        let translation = "Accessibility.DateTime.Hour.Value".localized
+        let translation = FluentUIFramework.localized("Accessibility.DateTime.Hour.Value")
         return String(format: translation, arguments: [item])
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.Hour.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.Hour.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -447,12 +450,12 @@ private class DateTimePickerViewMinuteDataSource: DateTimePickerViewDataSource {
             return nil
         }
 
-        let translation = "Accessibility.DateTime.Minute.Value".localized
+        let translation = FluentUIFramework.localized("Accessibility.DateTime.Minute.Value")
         return String(format: translation, arguments: [item])
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.Minute.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.Minute.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -512,7 +515,7 @@ private class DateTimePickerViewAMPMDataSource: DateTimePickerViewDataSource {
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.AMPM.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.AMPM.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -557,7 +560,7 @@ private class DateTimePickerViewWeekOfMonthDataSource: DateTimePickerViewDataSou
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.WeekOfMonth.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.WeekOfMonth.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {
@@ -601,7 +604,7 @@ private class DateTimePickerViewDayOfWeekDataSource: DateTimePickerViewDataSourc
     }
 
     func accessibilityLabel() -> String? {
-        return "Accessibility.DateTime.DayOfWeek.Label".localized
+        return FluentUIFramework.localized("Accessibility.DateTime.DayOfWeek.Label")
     }
 
     func dateComponents(forRowAtIndex index: Int) -> DateComponents? {

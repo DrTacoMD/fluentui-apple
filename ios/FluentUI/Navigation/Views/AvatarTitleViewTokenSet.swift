@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Design token set for the `AvatarTitleView` control.
 class AvatarTitleViewTokenSet: ControlTokenSet<AvatarTitleViewTokenSet.Tokens> {

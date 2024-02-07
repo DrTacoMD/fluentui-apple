@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 @objc public enum MSFAvatarPresence: Int, CaseIterable {
     case none
@@ -68,19 +71,19 @@ import SwiftUI
         case .none:
             return nil
         case .available:
-            return "Presence.Available".localized
+            return FluentUIFramework.localized("Presence.Available")
         case .away:
-            return "Presence.Away".localized
+            return FluentUIFramework.localized("Presence.Away")
         case .busy:
-            return "Presence.Busy".localized
+            return FluentUIFramework.localized("Presence.Busy")
         case .blocked:
-            return "Presence.Blocked".localized
+            return FluentUIFramework.localized("Presence.Blocked")
         case .doNotDisturb:
-            return "Presence.DND".localized
+            return FluentUIFramework.localized("Presence.DND")
         case .offline:
-            return "Presence.Offline".localized
+            return FluentUIFramework.localized("Presence.Offline")
         case .unknown:
-            return "Presence.Unknown".localized
+            return FluentUIFramework.localized("Presence.Unknown")
         }
     }
 }

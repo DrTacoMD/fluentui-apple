@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// `CommandBarDelegate` is used to notify consumers of the `CommandBar` of certain events occurring within the `CommandBar`
 public protocol CommandBarDelegate: AnyObject {
@@ -18,7 +21,7 @@ public protocol CommandBarDelegate: AnyObject {
  Provide `itemGroups` in `init` to set the buttons in the CommandBar. Optional `leadingItemGroups` and `trailingItemGroups` add buttons in leading and trailing positions. Each `CommandBarItem` will be represented as a button.
  */
 @objc(MSFCommandBar)
-public class CommandBar: UIView, TokenizedControlInternal {
+public class CommandBar: UIView, TokenizedControl {
     // Hierarchy:
     //
     // isScrollable = true

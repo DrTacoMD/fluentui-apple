@@ -5,6 +5,9 @@
 
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Properties available to customize the state of the Activity Indicator state
 @objc public protocol MSFActivityIndicatorState {
@@ -55,9 +58,9 @@ public struct ActivityIndicator: View, TokenizedControlView {
             }
 
             return state.isAnimating ?
-                "Accessibility.ActivityIndicator.Animating.label".localized
+                FluentUIFramework.localized("Accessibility.ActivityIndicator.Animating.label")
                 :
-                "Accessibility.ActivityIndicator.Stopped.label".localized
+                FluentUIFramework.localized("Accessibility.ActivityIndicator.Stopped.label")
         }()
 
 #if DEBUG
@@ -92,7 +95,7 @@ public struct ActivityIndicator: View, TokenizedControlView {
                    alignment: .center)
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFActivityIndicatorStateImpl
     @State var rotationAngle: Double = 0.0
 

@@ -4,10 +4,13 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// View that converts the subviews of a container view into a loading state with the "shimmering" effect.
 @objc(MSFShimmerView)
-open class ShimmerView: UIView, TokenizedControlInternal {
+open class ShimmerView: UIView, TokenizedControl {
 
     /// Optional synchronizer to sync multiple shimmer views.
     @objc open weak var animationSynchronizer: AnimationSynchronizerProtocol?

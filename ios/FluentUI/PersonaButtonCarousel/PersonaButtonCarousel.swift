@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Properties that define the appearance of a `PersonaButtonCarousel`.
 @objc public protocol MSFPersonaButtonCarouselState {
@@ -112,7 +115,7 @@ public struct PersonaButtonCarousel: View, TokenizedControlView {
         .background(Color(tokenSet[.backgroundColor].uiColor))
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFPersonaButtonCarouselStateImpl
 }
 

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: - NavigationBarTopAccessoryViewAttributes
 
@@ -100,7 +103,7 @@ protocol NavigationBarBackButtonDelegate {
 /// Contains the MSNavigationTitleView class and handles passing animatable progress through
 /// Custom UI can be hidden if desired
 @objc(MSFNavigationBar)
-open class NavigationBar: UINavigationBar, TokenizedControlInternal, TwoLineTitleViewDelegate {
+open class NavigationBar: UINavigationBar, TokenizedControl, TwoLineTitleViewDelegate {
     /// If the style is `.custom`, UINavigationItem's `navigationBarColor` is used for all the subviews' backgroundColor
     @objc(MSFNavigationBarStyle)
     public enum Style: Int {
@@ -344,12 +347,12 @@ open class NavigationBar: UINavigationBar, TokenizedControlInternal, TwoLineTitl
     private var titleStyleObserver: NSKeyValueObservation?
 
     private let backButtonItem: UIBarButtonItem = {
-        let backButtonItem = UIBarButtonItem(image: UIImage.staticImageNamed("back-24x24"),
+        let backButtonItem = UIBarButtonItem(image: FluentUIFramework.staticImageNamed("back-24x24"),
                                              style: .plain,
                                              target: nil,
                                              action: #selector(NavigationBarBackButtonDelegate.backButtonWasPressed))
         backButtonItem.accessibilityIdentifier = "Back"
-        backButtonItem.accessibilityLabel = "Accessibility.NavigationBar.BackLabel".localized
+        backButtonItem.accessibilityLabel = FluentUIFramework.localized("Accessibility.NavigationBar.BackLabel")
         return backButtonItem
     }()
 

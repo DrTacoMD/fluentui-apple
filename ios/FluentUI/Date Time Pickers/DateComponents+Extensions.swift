@@ -4,6 +4,9 @@
 //
 
 import Foundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 extension DateComponents {
     /// Determines if a set of date components including month, and year is equal to the current month or not.

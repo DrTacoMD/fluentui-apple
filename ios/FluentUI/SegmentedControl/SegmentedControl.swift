@@ -3,11 +3,14 @@
 //  Licensed under the MIT License.
 //
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: SegmentedControl
 /// A styled segmented control that should be used instead of UISegmentedControl. It is designed to flex the button width proportionally to the control's width.
 @objc(MSFSegmentedControl)
-open class SegmentedControl: UIView, TokenizedControlInternal {
+open class SegmentedControl: UIView, TokenizedControl {
     private struct Constants {
         static let iPadMinimumWidth: CGFloat = 375
     }
@@ -594,7 +597,7 @@ open class SegmentedControl: UIView, TokenizedControlInternal {
 
     private func updateAccessibilityHints() {
         for (index, button) in buttons.enumerated() {
-            button.accessibilityHint = String.localizedStringWithFormat("Accessibility.MSPillButtonBar.Hint".localized,
+            button.accessibilityHint = String.localizedStringWithFormat(FluentUIFramework.localized("Accessibility.MSPillButtonBar.Hint"),
                                                                         index + 1, items.count)
         }
     }

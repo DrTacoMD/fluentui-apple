@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum AvatarToken: Int, TokenSetKey {
     /// The radius of the corners of the `Avatar`.

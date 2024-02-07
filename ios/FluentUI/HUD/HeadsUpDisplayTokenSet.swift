@@ -5,6 +5,9 @@
 
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Design token set for the `HeadsUpDisplay` control.
 public class HeadsUpDisplayTokenSet: ControlTokenSet<HeadsUpDisplayTokenSet.Tokens> {

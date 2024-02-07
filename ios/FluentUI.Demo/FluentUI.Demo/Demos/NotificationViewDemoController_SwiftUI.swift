@@ -5,6 +5,9 @@
 
 import FluentUI
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class NotificationViewDemoControllerSwiftUI: UIHostingController<NotificationDemoView> {
     override init?(coder aDecoder: NSCoder, rootView: NotificationDemoView) {

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Defines the timing for the call of the onSelected closure/block
 @objc(MSFPopupMenuItemExecutionMode)

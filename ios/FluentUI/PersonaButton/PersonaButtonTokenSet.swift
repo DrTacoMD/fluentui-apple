@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Pre-defined sizes of the persona button
 @objc public enum MSFPersonaButtonSize: Int, CaseIterable {

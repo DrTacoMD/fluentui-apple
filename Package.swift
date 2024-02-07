@@ -30,12 +30,13 @@ let package = Package(
         ),
         .target(
             name: "FluentUI_ios",
+            dependencies: ["FluentUI-Core-iOS"],
             path: "ios/FluentUI",
             exclude: [
                 "Avatar/Avatar.resources.xcfilelist",
                 "BarButtonItems/BarButtonItems.resources.xcfilelist",
                 "Bottom Commanding/BottomCommanding.resources.xcfilelist",
-                "Core/Core.resources.xcfilelist",
+                "Core/",
                 "HUD/HUD.resources.xcfilelist",
                 "Navigation/Navigation.resources.xcfilelist",
                 "Notification/Notification.resources.xcfilelist",
@@ -45,6 +46,13 @@ let package = Package(
                 "TextField/TextField.resources.xcfilelist",
                 "Tooltip/Tooltip.resources.xcfilelist",
                 "TwoLineTitleView/TwoLineTitleView.resources.xcfilelist",
+            ]
+        ),
+        .target(
+            name: "FluentUI-Core-iOS",
+            path: "ios/FluentUI/Core",
+            exclude: [
+                "Core.resources.xcfilelist"
             ]
         ),
         .target(

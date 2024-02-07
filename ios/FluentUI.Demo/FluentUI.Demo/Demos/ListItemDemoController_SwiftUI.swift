@@ -5,6 +5,9 @@
 
 import FluentUI
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class ListItemDemoControllerSwiftUI: UIHostingController<ListItemDemoView> {
     override init?(coder aDecoder: NSCoder, rootView: ListItemDemoView) {

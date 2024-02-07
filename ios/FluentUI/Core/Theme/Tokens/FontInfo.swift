@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Represents the description of a font used by FluentUI components.
 @objc(MSFFontInfo)

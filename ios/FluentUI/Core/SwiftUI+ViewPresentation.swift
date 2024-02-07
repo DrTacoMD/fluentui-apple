@@ -60,7 +60,7 @@ extension View {
     ///   - presentedView: The SwiftUI View that will be presented on top of this view.
     /// - Returns: Returns the modified view with its overlay according to the passed parameters.
     @ViewBuilder
-    func presentingView<PresentedView: View>(isPresented: Binding<Bool>,
+    public func presentingView<PresentedView: View>(isPresented: Binding<Bool>,
                                              dimmedBackgroundColor: Color = Color.black,
                                              dimmedBackgroundColorOpacity: Double = 0.1,
                                              hasDimmedBackground: Bool = false,

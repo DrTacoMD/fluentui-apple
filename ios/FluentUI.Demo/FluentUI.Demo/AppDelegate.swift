@@ -11,6 +11,9 @@ import AppCenterDistribute
 #endif
 import FluentUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 #if DOGFOOD
 // Provide App Center secret here and in the target settings: APPCENTER_SECRET user-defined setting

@@ -4,7 +4,7 @@
 //
 import UIKit
 
-class FocusRingView: UIView {
+public class FocusRingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false
@@ -26,7 +26,7 @@ class FocusRingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func drawFocusRing(over view: UIView) {
+    public func drawFocusRing(over view: UIView) {
         let viewLayer = view.layer
         let cornerRadius = viewLayer.cornerRadius
         let cornerCurve = viewLayer.cornerCurve

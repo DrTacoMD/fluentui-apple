@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum TooltipToken: Int, TokenSetKey {
     /// The color of the body of the tooltip.

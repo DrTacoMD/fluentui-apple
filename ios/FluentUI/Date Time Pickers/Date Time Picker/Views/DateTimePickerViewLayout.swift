@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// A static class used to calculate layout and sizing information for DateTimePickerView.
 class DateTimePickerViewLayout {

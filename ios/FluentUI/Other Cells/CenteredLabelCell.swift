@@ -4,11 +4,14 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: CenteredLabelCell
 
 @objc(MSFCenteredLabelCell)
-open class CenteredLabelCell: UITableViewCell, TokenizedControlInternal {
+open class CenteredLabelCell: UITableViewCell, TokenizedControl {
     public static let identifier: String = "CenteredLabelCell"
 
     public typealias TokenSetKeyType = TableViewCellTokenSet.Tokens

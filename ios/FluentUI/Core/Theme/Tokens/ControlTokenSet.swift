@@ -5,9 +5,12 @@
 
 import Combine
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Base class for all Fluent control tokenization.
-public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
+open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// Allows us to index into this token set using square brackets.
     ///
     /// We can use square brackets to both read and write into this `TokenSet`. For example:
@@ -60,7 +63,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// - Parameter otherTokenSet: The token set we will be pulling values from.
     /// - Parameter mapping: A `Dictionary` that maps our own tokens that we wish to override with
     /// their corresponding tokens in `otherTokenSet`.
-    func setOverrides<U>(from otherTokenSet: ControlTokenSet<U>, mapping: [T: U]) {
+    public func setOverrides<U>(from otherTokenSet: ControlTokenSet<U>, mapping: [T: U]) {
         // Make a copy so we write all the values at once
         var valueOverrideCopy = valueOverrides ?? [:]
         mapping.forEach { (thisToken, otherToken) in
@@ -70,7 +73,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     }
 
     /// Initialize the `ControlTokenSet` with an escaping callback for fetching default values.
-    init(_ defaults: @escaping (_ token: T, _ theme: FluentTheme) -> ControlTokenValue) {
+    public init(_ defaults: @escaping (_ token: T, _ theme: FluentTheme) -> ControlTokenValue) {
         self.defaults = defaults
     }
 
@@ -80,7 +83,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
 
     /// Removes all `onUpdate`-based observing. Useful if you are re-registering the same tokenSet
     /// for a new instance of a control (see `Tooltip` for an example).
-    func deregisterOnUpdate() {
+    public func deregisterOnUpdate() {
         if let notificationObserver {
             NotificationCenter.default.removeObserver(notificationObserver,
                                                       name: .didChangeTheme,
@@ -94,7 +97,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// Prepares this token set by installing the current `FluentTheme` if it has changed.
     ///
     /// - Parameter fluentTheme: The current `FluentTheme` for the control's environment.
-    func update(_ fluentTheme: FluentTheme) {
+    public func update(_ fluentTheme: FluentTheme) {
         if fluentTheme != self.fluentTheme {
             self.fluentTheme = fluentTheme
         }
@@ -110,7 +113,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// - Parameter token: The token key to fetch any existing override for.
     ///
     /// - Returns: the active override value for a given token, or nil if none exists.
-    func overrideValue(forToken token: T) -> ControlTokenValue? {
+    public func overrideValue(forToken token: T) -> ControlTokenValue? {
         if let value = valueOverrides?[token] {
             return value
         } else if let value = fluentTheme.tokens(for: type(of: self))?[token] {
@@ -123,7 +126,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     ///
     /// - Parameter value: The value to set as an override.
     /// - Parameter token: The token key whose value should be set.
-    func setOverrideValue(_ value: ControlTokenValue?, forToken token: T) {
+    public func setOverrideValue(_ value: ControlTokenValue?, forToken token: T) {
         if valueOverrides == nil {
             valueOverrides = [:]
         }
@@ -141,7 +144,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     ///
     /// - Parameter control: The `UIView` instance that wishes to observe.
     /// - Parameter onUpdate: A callback to run whenever `control` should update itself.
-    func registerOnUpdate(for control: UIView, onUpdate: @escaping (() -> Void)) {
+    public func registerOnUpdate(for control: UIView, onUpdate: @escaping (() -> Void)) {
         guard self.onUpdate == nil,
               changeSink == nil,
               notificationObserver == nil else {
@@ -173,7 +176,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     }
 
     /// The current `FluentTheme` associated with this `ControlTokenSet`.
-    var fluentTheme: FluentTheme = FluentTheme.shared {
+    public var fluentTheme: FluentTheme = FluentTheme.shared {
         didSet {
             guard let onUpdate else {
                 return

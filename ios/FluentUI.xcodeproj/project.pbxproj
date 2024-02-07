@@ -370,7 +370,7 @@
 		92E7AD4E26FE51FF00AE7FF8 /* DynamicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicColor.swift; sourceTree = "<group>"; };
 		92EE82AC27025A94009D52B5 /* TokenSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSet.swift; sourceTree = "<group>"; };
 		94A7EC192836DCB100BFFBAE /* CommandBarCommandGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarCommandGroupsView.swift; sourceTree = "<group>"; };
-		A257F82B251D98F3002CAA6E /* FluentUI-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "FluentUI-ios.xcassets"; path = "FluentUI/Resources/FluentUI-ios.xcassets"; sourceTree = "<group>"; };
+		A257F82B251D98F3002CAA6E /* FluentUI-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "FluentUI-ios.xcassets"; sourceTree = "<group>"; };
 		A5237ACA21DED7030040BF27 /* ResizingHandleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizingHandleView.swift; sourceTree = "<group>"; };
 		A5237ACC21ED6CA70040BF27 /* DrawerShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerShadowView.swift; sourceTree = "<group>"; };
 		A52648DB2316F4F9003342A0 /* BarButtonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonItems.swift; sourceTree = "<group>"; };
@@ -907,7 +907,6 @@
 			isa = PBXGroup;
 			children = (
 				F5784DB9285D031800DBEAD6 /* docs */,
-				A257F82B251D98F3002CAA6E /* FluentUI-ios.xcassets */,
 				A5CEC15320D980B20016922A /* FluentUI */,
 				A5DA88FD226FAA01000A8EA8 /* FluentUI.Resources */,
 				A5CEC15E20D980B30016922A /* FluentUI.Tests */,
@@ -947,7 +946,6 @@
 				5314DFEF25F003C60099271A /* DotView */,
 				A5B87AF2211E13D00038C37C /* Drawer */,
 				5314DFF525F007020099271A /* EasyTapButton */,
-				A5B87AED211BCA4A0038C37C /* Extensions */,
 				B483323121CC71700022B4CC /* HUD */,
 				5314DFF425F0069C0099271A /* IndeterminateProgressBar */,
 				5314DFF025F0042E0099271A /* Label */,
@@ -974,7 +972,6 @@
 				5314DFF325F006060099271A /* TouchForwardingView */,
 				5314DFF825F008870099271A /* TwoLineTitleView */,
 				C0938E42235E8EAF00256251 /* Utilities */,
-				A5CEC17020D996120016922A /* Resources */,
 				A5CEC25720E6A64E0016922A /* Configuration */,
 			);
 			path = FluentUI;
@@ -995,6 +992,8 @@
 		A5CEC16B20D98EBF0016922A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A5B87AED211BCA4A0038C37C /* Extensions */,
+				A5CEC17020D996120016922A /* Resources */,
 				925D461926FD124B00179583 /* Theme */,
 				D6296DAD295B7C9F002E8EB6 /* ColorProviding.swift */,
 				926FEEA92B45A8B4002C61D0 /* Compatibility.swift */,
@@ -1014,6 +1013,7 @@
 		A5CEC17020D996120016922A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A257F82B251D98F3002CAA6E /* FluentUI-ios.xcassets */,
 				A5CEC17320D997CF0016922A /* Localization */,
 			);
 			path = Resources;

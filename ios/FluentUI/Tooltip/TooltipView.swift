@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: TooltipView
 class TooltipView: UIView, Shadowable {
@@ -26,7 +29,7 @@ class TooltipView: UIView, Shadowable {
         self.arrowMargin = arrowMargin
         self.tokenSet = tokenSet
 
-        let arrowImageViewBaseImage = UIImage.staticImageNamed("tooltip-arrow")
+        let arrowImageViewBaseImage = FluentUIFramework.staticImageNamed("tooltip-arrow")
         arrowImageView = UIImageView(image: arrowImageViewBaseImage)
         arrowImageView.image = arrowImageViewBaseImage?.withTintColor(tokenSet[.tooltipColor].uiColor, renderingMode: .alwaysOriginal)
 
@@ -148,7 +151,7 @@ class TooltipView: UIView, Shadowable {
 #endif
 
     override var accessibilityHint: String? {
-        get { return "Accessibility.Dismiss.Hint".localized }
+        get { return FluentUIFramework.localized("Accessibility.Dismiss.Hint") }
         set { }
     }
 
@@ -305,7 +308,7 @@ class TooltipView: UIView, Shadowable {
                                           tokenSet: TooltipTokenSet,
                                           isMessage: Bool) -> CGSize {
         let boundingWidth = isAccessibilityContentSize ? size.width : min(tokenSet[.maximumWidth].float - (2 * TooltipTokenSet.paddingHorizontal), size.width)
-        return text.preferredSize(for: tokenSet[isMessage ? .messageLabelTextStyle : .titleLabelTextStyle].uiFont, width: boundingWidth)
+        return FluentStringHelpers.preferredSize(text, for: tokenSet[isMessage ? .messageLabelTextStyle : .titleLabelTextStyle].uiFont, width: boundingWidth)
     }
 
     private var arrowPosition: CGFloat {

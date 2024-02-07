@@ -4,6 +4,9 @@
 //
 
 import Foundation
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: DayOfMonth
 
@@ -30,15 +33,15 @@ public enum WeekOfMonth: Int, CaseIterable {
     public var label: String {
         switch self {
         case .first:
-            return "Accessibility.DateTime.Week.First".localized
+            return FluentUIFramework.localized("Accessibility.DateTime.Week.First")
         case .second:
-            return "Accessibility.DateTime.Week.Second".localized
+            return FluentUIFramework.localized("Accessibility.DateTime.Week.Second")
         case .third:
-            return "Accessibility.DateTime.Week.Third".localized
+            return FluentUIFramework.localized("Accessibility.DateTime.Week.Third")
         case .fourth:
-            return "Accessibility.DateTime.Week.Fourth".localized
+            return FluentUIFramework.localized("Accessibility.DateTime.Week.Fourth")
         case .last:
-            return "Accessibility.DateTime.Week.Last".localized
+            return FluentUIFramework.localized("Accessibility.DateTime.Week.Last")
         }
     }
 

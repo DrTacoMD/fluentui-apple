@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 extension UIResponder {
     // From http://stackoverflow.com/a/27140764

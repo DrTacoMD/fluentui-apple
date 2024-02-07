@@ -4,10 +4,13 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: BadgeLabel
 
-class BadgeLabel: UILabel, TokenizedControlInternal {
+class BadgeLabel: UILabel, TokenizedControl {
     var style: BadgeLabelStyle = .system {
         didSet {
             updateColors()

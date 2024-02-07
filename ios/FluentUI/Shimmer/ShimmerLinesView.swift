@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /**
  Specialized ShimmerView that shows 1 or more shimmering lines.

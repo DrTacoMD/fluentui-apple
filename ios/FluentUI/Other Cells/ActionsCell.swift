@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: ActionsCell
 
@@ -15,7 +18,7 @@ import UIKit
  `topSeparatorType` and `bottomSeparatorType` can be used to show custom horizontal separators. Make sure to remove the `UITableViewCell` built-in separator by setting `separatorStyle = .none` on your table view.
  */
 @objc(MSFActionsCell)
-open class ActionsCell: UITableViewCell, TokenizedControlInternal {
+open class ActionsCell: UITableViewCell, TokenizedControl {
     @objc(MSFActionsCellActionType)
     public enum ActionType: Int {
         case regular
@@ -60,8 +63,8 @@ open class ActionsCell: UITableViewCell, TokenizedControlInternal {
         let width = ceil(containerWidth / actionCount)
 
         let actionTitleFont = tokenSet[.titleFont].uiFont
-        let action1TitleHeight = action1Title.preferredSize(for: actionTitleFont, width: width).height
-        let action2TitleHeight = action2Title.preferredSize(for: actionTitleFont, width: width).height
+        let action1TitleHeight = FluentStringHelpers.preferredSize(action1Title, for: actionTitleFont, width: width).height
+        let action2TitleHeight = FluentStringHelpers.preferredSize(action2Title, for: actionTitleFont, width: width).height
 
         return max(TableViewCellTokenSet.paddingVertical * 2 + max(action1TitleHeight, action2TitleHeight),
                    TableViewCellTokenSet.oneLineMinHeight)
@@ -69,8 +72,8 @@ open class ActionsCell: UITableViewCell, TokenizedControlInternal {
 
     public class func preferredWidth(action1Title: String, action2Title: String = "", tokenSet: TableViewCellTokenSet) -> CGFloat {
         let actionTitleFont = tokenSet[.titleFont].uiFont
-        let action1TitleWidth = action1Title.preferredSize(for: actionTitleFont).width
-        let action2TitleWidth = action2Title.preferredSize(for: actionTitleFont).width
+        let action1TitleWidth = FluentStringHelpers.preferredSize(action1Title, for: actionTitleFont).width
+        let action2TitleWidth = FluentStringHelpers.preferredSize(action2Title, for: actionTitleFont).width
 
         let actionCount: CGFloat = action2Title == "" ? 1 : 2
         return actionCount * max(action1TitleWidth, action2TitleWidth)

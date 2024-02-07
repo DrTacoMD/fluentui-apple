@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: HUDDelegate
 
@@ -252,7 +255,7 @@ public class HUD: NSObject {
             }
             self.resetIfNeeded()
             UIAccessibility.post(notification: .screenChanged,
-                                 argument: "Accessibility.HUD.Done".localized)
+                                 argument: FluentUIFramework.localized("Accessibility.HUD.Done"))
         }
 
         if animated {

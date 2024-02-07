@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Representation of design tokens to controls at runtime which interfaces with the Design Token System auto-generated code.
 /// Updating these properties causes the SwiftUI controls to update its view automatically.

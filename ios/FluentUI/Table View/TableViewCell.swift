@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: TableViewCellAccessoryType
 
@@ -25,11 +28,11 @@ public enum TableViewCellAccessoryType: Int {
         case .none:
             icon = nil
         case .disclosureIndicator:
-            icon = UIImage.staticImageNamed("iOS-chevron-right-20x20")
+            icon = FluentUIFramework.staticImageNamed("iOS-chevron-right-20x20")
         case .detailButton:
-            icon = UIImage.staticImageNamed("more-24x24")
+            icon = FluentUIFramework.staticImageNamed("more-24x24")
         case .checkmark:
-            icon = UIImage.staticImageNamed("checkmark-24x24")
+            icon = FluentUIFramework.staticImageNamed("checkmark-24x24")
         }
         return icon
     }
@@ -113,7 +116,7 @@ Specify `accessoryType` on setup to show either a disclosure indicator or a `det
 NOTE: This cell implements its own custom separator. Make sure to remove the UITableViewCell built-in separator by setting `separatorStyle = .none` on your table view. To remove the cell's custom separator set `bottomSeparatorType` to `.none`.
 */
 @objc(MSFTableViewCell)
-open class TableViewCell: UITableViewCell, TokenizedControlInternal {
+open class TableViewCell: UITableViewCell, TokenizedControl {
     @objc(MSFTableViewCellSeparatorType)
     public enum SeparatorType: Int {
         case none
@@ -560,7 +563,7 @@ open class TableViewCell: UITableViewCell, TokenizedControlInternal {
                                                                               text: text, labelAccessoryViewMarginLeading: labelAccessoryViewMarginLeading)
 
         let availableWidth = textAreaWidth - (leadingAccessoryAreaWidth + trailingAccessoryAreaWidth + labelAccessoryViewMarginTrailing)
-        let labelSize = text.preferredSize(for: font, width: availableWidth, numberOfLines: numberOfLines)
+        let labelSize = FluentStringHelpers.preferredSize(text, for: font, width: availableWidth, numberOfLines: numberOfLines)
         if isAttributedTextSet, let attributedText = attributedText {
             let attributedSize = preferredLabelSize(with: attributedText, availableTextWidth: availableWidth)
             // The boundingRect method for NSAttributedString does not consider system font size,
@@ -590,11 +593,11 @@ open class TableViewCell: UITableViewCell, TokenizedControlInternal {
                                             trailingAccessoryView: UIView?,
                                             labelAccessoryViewMarginTrailing: CGFloat,
                                             labelAccessoryViewMarginLeading: CGFloat) -> CGFloat {
-        var labelWidth = text.preferredSize(for: font).width
+        var labelWidth = FluentStringHelpers.preferredSize(text, for: font).width
         if isAttributedTextSet, let attributedText = attributedText {
             labelWidth = preferredLabelSize(with: attributedText).width
         } else {
-            labelWidth = text.preferredSize(for: font).width
+            labelWidth = FluentStringHelpers.preferredSize(text, for: font).width
         }
         labelWidth += labelLeadingAccessoryAreaWidth(viewWidth: leadingAccessoryView?.frame.width ?? 0,
                                                      labelAccessoryViewMarginTrailing: labelAccessoryViewMarginTrailing) +
@@ -1112,11 +1115,11 @@ open class TableViewCell: UITableViewCell, TokenizedControlInternal {
     open override var accessibilityHint: String? {
         get {
             if isInSelectionMode && isEnabled {
-                return "Accessibility.MultiSelect.Hint".localized
+                return FluentUIFramework.localized("Accessibility.MultiSelect.Hint")
             }
             if let customSwitch = customAccessoryView as? UISwitch {
                 if isEnabled && customSwitch.isEnabled {
-                    return "Accessibility.TableViewCell.Switch.Hint".localized
+                    return FluentUIFramework.localized("Accessibility.TableViewCell.Switch.Hint")
                 } else {
                     return nil
                 }
@@ -1129,10 +1132,10 @@ open class TableViewCell: UITableViewCell, TokenizedControlInternal {
     open override var accessibilityValue: String? {
         get {
             if let customAccessoryView = customAccessoryView as? UISwitch {
-                return (customAccessoryView.isOn ? "Accessibility.TableViewCell.Switch.On" : "Accessibility.TableViewCell.Switch.Off").localized
+                return FluentUIFramework.localized(customAccessoryView.isOn ? "Accessibility.TableViewCell.Switch.On" : "Accessibility.TableViewCell.Switch.Off")
             }
             if isUnreadDotVisible {
-                return String(format: "Accessibility.TabBarItemView.UnreadFormat".localized, "")
+                return String(format: FluentUIFramework.localized("Accessibility.TabBarItemView.UnreadFormat"), "")
             }
             return super.accessibilityValue
         }
@@ -1654,7 +1657,7 @@ open class TableViewCell: UITableViewCell, TokenizedControlInternal {
             size = Self.preferredLabelSize(with: attributedText, availableTextWidth: textAreaWidth)
         } else {
             visibleText = text
-            size = text.preferredSize(for: label.font, width: textAreaWidth, numberOfLines: numberOfLines)
+            size = FluentStringHelpers.preferredSize(text, for: label.font, width: textAreaWidth, numberOfLines: numberOfLines)
         }
 
         if let leadingAccessoryView = leadingAccessoryView {
@@ -2102,8 +2105,8 @@ internal class TableViewCellAccessoryView: UIView {
         button.setImage(type.icon, for: .normal)
         button.frame.size = type.size
         button.contentMode = .center
-        button.accessibilityLabel = "Accessibility.TableViewCell.MoreActions.Label".localized
-        button.accessibilityHint = "Accessibility.TableViewCell.MoreActions.Hint".localized
+        button.accessibilityLabel = FluentUIFramework.localized("Accessibility.TableViewCell.MoreActions.Label")
+        button.accessibilityHint = FluentUIFramework.localized("Accessibility.TableViewCell.MoreActions.Hint")
         button.addTarget(self, action: #selector(handleOnAccessoryTapped), for: .touchUpInside)
         button.isPointerInteractionEnabled = true
 

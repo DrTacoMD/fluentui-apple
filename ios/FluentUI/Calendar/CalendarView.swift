@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: CalendarViewHeightStyle
 
@@ -148,9 +151,9 @@ class CalendarView: UIView {
 
     override var isAccessibilityElement: Bool { get { return true } set { } }
 
-    override var accessibilityLabel: String? { get { return "Accessibility.Calendar.Label".localized } set { } }
+    override var accessibilityLabel: String? { get { return FluentUIFramework.localized("Accessibility.Calendar.Label") } set { } }
 
-    override var accessibilityHint: String? { get { return "Accessibility.Calendar.Hint".localized } set { } }
+    override var accessibilityHint: String? { get { return FluentUIFramework.localized("Accessibility.Calendar.Hint") } set { } }
 
     override var accessibilityTraits: UIAccessibilityTraits { get { return super.accessibilityTraits.union(.adjustable) } set { } }
 

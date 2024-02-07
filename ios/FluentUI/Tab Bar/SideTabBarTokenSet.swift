@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum SideTabBarToken: Int, TokenSetKey {
     /// Optionally overrides the default background color of the `SideTabBar`.

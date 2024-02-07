@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: TwoLineTitleViewDelegate
 
@@ -17,7 +20,7 @@ public protocol TwoLineTitleViewDelegate: AnyObject {
 // MARK: - TwoLineTitleView
 
 @objc(MSFTwoLineTitleView)
-open class TwoLineTitleView: UIView, TokenizedControlInternal {
+open class TwoLineTitleView: UIView, TokenizedControl {
     @objc(MSFTwoLineTitleViewStyle)
     public enum Style: Int {
         case primary
@@ -71,9 +74,9 @@ open class TwoLineTitleView: UIView, TokenizedControlInternal {
         public func image(isTitle: Bool) -> UIImage? {
             switch self {
             case .disclosure:
-                return UIImage.staticImageNamed(isTitle ? "chevron-right-16x16" : "chevron-right-12x12")
+                return FluentUIFramework.staticImageNamed(isTitle ? "chevron-right-16x16" : "chevron-right-12x12")
             case .downArrow:
-                return UIImage.staticImageNamed(isTitle ? "chevron-down-16x16" : "chevron-down-12x12")
+                return FluentUIFramework.staticImageNamed(isTitle ? "chevron-down-16x16" : "chevron-down-12x12")
             case .none, .custom:
                 return nil
             }

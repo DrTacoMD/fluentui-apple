@@ -35,7 +35,7 @@ open class ControlHostingView: UIView {
     /// the control view in an `AnyView.`
     ///
     /// - Parameter controlView: An `AnyView`-wrapped component to host.
-    init(_ controlView: AnyView) {
+    public init(_ controlView: AnyView) {
         self.controlView = controlView
         super.init(frame: .zero)
 

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum SegmentedControlToken: Int, TokenSetKey {
     /// Defines the background color of the unselected segments of the `SegmentedControl`.

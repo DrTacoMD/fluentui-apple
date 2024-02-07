@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum TabBarToken: Int, TokenSetKey {
     /// Defines the background color of the `TabBarItem` when selected.

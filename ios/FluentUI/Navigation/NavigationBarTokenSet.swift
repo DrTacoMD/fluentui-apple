@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum NavigationBarToken: Int, TokenSetKey {
     /// Describes the background color for the navigation bar.

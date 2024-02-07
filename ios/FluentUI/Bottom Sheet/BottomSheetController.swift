@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 @objc(MSFBottomSheetControllerDelegate)
 public protocol BottomSheetControllerDelegate: AnyObject {
@@ -40,7 +43,7 @@ public protocol BottomSheetControllerDelegate: AnyObject {
 }
 
 @objc(MSFBottomSheetController)
-public class BottomSheetController: UIViewController, Shadowable, TokenizedControlInternal {
+public class BottomSheetController: UIViewController, Shadowable, TokenizedControl {
 
     /// Initializes the bottom sheet controller
     /// - Parameters:
@@ -451,7 +454,7 @@ public class BottomSheetController: UIViewController, Shadowable, TokenizedContr
     public typealias TokenSetKeyType = BottomSheetTokenSet.Tokens
     public var tokenSet: BottomSheetTokenSet = .init()
 
-    var fluentTheme: FluentTheme { return view.fluentTheme }
+    public var fluentTheme: FluentTheme { return view.fluentTheme }
 
     private func updateAppearance() {
         updateBackgroundColor()
@@ -488,8 +491,8 @@ public class BottomSheetController: UIViewController, Shadowable, TokenizedContr
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
         dimmingView.alpha = 0.0
 
-        dimmingView.accessibilityLabel = "Accessibility.Dismiss.Label".localized
-        dimmingView.accessibilityHint = "Accessibility.Dismiss.Hint".localized
+        dimmingView.accessibilityLabel = FluentUIFramework.localized("Accessibility.Dismiss.Label")
+        dimmingView.accessibilityHint = FluentUIFramework.localized("Accessibility.Dismiss.Hint")
         dimmingView.accessibilityTraits = .button
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDimmingViewTap))
@@ -581,11 +584,11 @@ public class BottomSheetController: UIViewController, Shadowable, TokenizedContr
 
     private func updateResizingHandleViewAccessibility() {
         if currentExpansionState == .expanded {
-            resizingHandleView.accessibilityLabel = handleCollapseCustomAccessibilityLabel ?? "Accessibility.Drawer.ResizingHandle.Label.Collapse".localized
-            resizingHandleView.accessibilityHint = "Accessibility.Drawer.ResizingHandle.Hint.Collapse".localized
+            resizingHandleView.accessibilityLabel = handleCollapseCustomAccessibilityLabel ?? FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Label.Collapse")
+            resizingHandleView.accessibilityHint = FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Hint.Collapse")
         } else {
-            resizingHandleView.accessibilityLabel = handleExpandCustomAccessibilityLabel ?? "Accessibility.Drawer.ResizingHandle.Label.Expand".localized
-            resizingHandleView.accessibilityHint = "Accessibility.Drawer.ResizingHandle.Hint.Expand".localized
+            resizingHandleView.accessibilityLabel = handleExpandCustomAccessibilityLabel ?? FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Label.Expand")
+            resizingHandleView.accessibilityHint = FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Hint.Expand")
         }
     }
 

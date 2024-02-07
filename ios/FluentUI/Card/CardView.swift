@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Delegate protocol to handle user interaction with the CardView
 @objc(MSFCardDelegate)
@@ -151,7 +154,7 @@ public enum CardSize: Int, CaseIterable {
  Conform to the `CardDelegate` in order to provide a handler for the card tap event
  */
 @objc(MSFCardView)
-open class CardView: UIView, Shadowable, TokenizedControlInternal {
+open class CardView: UIView, Shadowable, TokenizedControl {
 
     /// Delegate to handle user interaction with the CardView
     @objc public weak var delegate: CardDelegate?

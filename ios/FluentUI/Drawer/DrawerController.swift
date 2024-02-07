@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: DrawerResizingBehavior
 
@@ -97,7 +100,7 @@ public protocol DrawerControllerDelegate: AnyObject {
  */
 
 @objc(MSFDrawerController)
-open class DrawerController: UIViewController, TokenizedControlInternal {
+open class DrawerController: UIViewController, TokenizedControl {
     /// DrawerController colors with obj-c support
     @objc public static func drawerBackgroundColor(fluentTheme: FluentTheme?) -> UIColor {
         let theme = fluentTheme ?? .shared
@@ -595,7 +598,7 @@ open class DrawerController: UIViewController, TokenizedControlInternal {
     public typealias TokenSetKeyType = DrawerTokenSet.Tokens
     public var tokenSet: DrawerTokenSet = .init()
 
-    var fluentTheme: FluentTheme { return view.fluentTheme }
+    public var fluentTheme: FluentTheme { return view.fluentTheme }
 
     // Change of presentation direction's orientation is not supported
     private func presentationDirection(for view: UIView) -> DrawerPresentationDirection {
@@ -777,11 +780,11 @@ open class DrawerController: UIViewController, TokenizedControlInternal {
         resizingHandleView?.isAccessibilityElement = resizingHandleIsInteractive
         resizingHandleView?.accessibilityTraits = .button
         if isExpanded {
-            resizingHandleView?.accessibilityLabel = "Accessibility.Drawer.ResizingHandle.Label.Collapse".localized
-            resizingHandleView?.accessibilityHint = "Accessibility.Drawer.ResizingHandle.Hint.Collapse".localized
+            resizingHandleView?.accessibilityLabel = FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Label.Collapse")
+            resizingHandleView?.accessibilityHint = FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Hint.Collapse")
         } else {
-            resizingHandleView?.accessibilityLabel = "Accessibility.Drawer.ResizingHandle.Label.Expand".localized
-            resizingHandleView?.accessibilityHint = "Accessibility.Drawer.ResizingHandle.Hint.Expand".localized
+            resizingHandleView?.accessibilityLabel = FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Label.Expand")
+            resizingHandleView?.accessibilityHint = FluentUIFramework.localized("Accessibility.Drawer.ResizingHandle.Hint.Expand")
         }
     }
 

@@ -6,6 +6,9 @@
 import FluentUI
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class IndeterminateProgressBarDemoControllerSwiftUI: UIHostingController<IndeterminateProgressBarDemoView> {
     override init?(coder aDecoder: NSCoder, rootView: IndeterminateProgressBarDemoView) {

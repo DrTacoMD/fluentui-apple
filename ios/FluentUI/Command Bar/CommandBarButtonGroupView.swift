@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class CommandBarButtonGroupView: UIView {
     let buttons: [CommandBarButton]

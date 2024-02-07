@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: BadgeViewDataSource
 @objc(MSFBadgeViewDataSource)
@@ -56,7 +59,7 @@ public protocol BadgeViewDelegate {
  `BadgeView` can be selected with a tap gesture and tapped again after entering a selected state for the purpose of displaying more details about the entity represented by the selected badge.
  */
 @objc(MSFBadgeView)
-open class BadgeView: UIView, TokenizedControlInternal {
+open class BadgeView: UIView, TokenizedControl {
     @objc open var dataSource: BadgeViewDataSource? {
         didSet {
             reload()

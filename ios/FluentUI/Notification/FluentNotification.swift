@@ -4,6 +4,56 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
+
+/// UILabel wrapper that allows SwiftUI to support NSAttributedString
+struct AttributedText: UIViewRepresentable {
+
+    let attributedString: NSAttributedString
+    let preferredMaxWidth: CGFloat
+
+    init(_ attributedString: NSAttributedString, _ preferredMaxWidth: CGFloat) {
+        self.attributedString = attributedString
+        self.preferredMaxWidth = preferredMaxWidth
+    }
+
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+
+        // Setting this ensures the UIViewRepresentable respects the parent view's width
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.adjustsFontForContentSizeCategory = true
+        return label
+    }
+
+    func updateUIView(_ label: UILabel, context: Context) {
+        // Update the UILabel's attributes if it changes.
+        DispatchQueue.main.async {
+            label.attributedText = attributedString
+            label.preferredMaxLayoutWidth = preferredMaxWidth
+        }
+    }
+}
+
+/// ViewModifier that uses GeometryReader to get the size of the content view and sets it in the SizePreferenceKey
+struct OnSizeChangeViewModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.background(GeometryReader { geometryReader in
+            Color.clear.preference(key: SizePreferenceKey.self,
+                                   value: geometryReader.size)
+        })
+    }
+}
+
+/// PreferenceKey that will store the measured size of the view
+struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
 
 /// Properties that can be used to customize the appearance of the `Notification`.
 @objc public protocol MSFNotificationState: NSObjectProtocol {
@@ -211,7 +261,7 @@ public struct FluentNotification: View, TokenizedControlView {
                                 .accessibilityLabel(state.trailingImageAccessibilityLabel ?? "")
                         } else {
                             Image("dismiss-20x20", bundle: FluentUIFramework.resourceBundle)
-                                .accessibilityLabel("Accessibility.Dismiss.Label".localized)
+                                .accessibilityLabel(FluentUIFramework.localized("Accessibility.Dismiss.Label"))
                         }
                     })
                     .foregroundColor(Color(foregroundColor))
@@ -316,7 +366,7 @@ public struct FluentNotification: View, TokenizedControlView {
                     notification
                         .frame(idealWidth: isFlexibleWidthToast ? innerContentsSize.width - horizontalPadding : calculatedNotificationWidth,
                                maxWidth: isFlexibleWidthToast ? proposedWidth : calculatedNotificationWidth, alignment: .center)
-                        .onChange_iOS17(of: isPresented) { newPresent in
+                        .fluent_onChange_iOS17(of: isPresented) { newPresent in
                             if newPresent {
                                 presentAnimated()
                             } else {
@@ -341,7 +391,7 @@ public struct FluentNotification: View, TokenizedControlView {
         return presentableNotification
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFNotificationStateImpl
 
     private var hasImage: Bool {
@@ -396,6 +446,17 @@ public struct FluentNotification: View, TokenizedControlView {
     // When true, the notification will fit the size of its contents.
     // When false, the notification will be fixed based on the size of the screen.
     private let isFlexibleWidthToast: Bool
+}
+
+extension View {
+    /// Measures the size of a view, monitors when its size is updated, and takes a closure to be called when it does
+    /// - Parameter action: Block to be performed on size change
+    /// - Returns The modified view.
+    func onSizeChange(perform action: @escaping (CGSize) -> Void) -> some View {
+        self.modifier(OnSizeChangeViewModifier())
+            .onPreferenceChange(SizePreferenceKey.self,
+                                perform: action)
+    }
 }
 
 class MSFNotificationStateImpl: ControlState, MSFNotificationState {

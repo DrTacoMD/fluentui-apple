@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum BadgeLabelToken: Int, TokenSetKey {
     /// The background color of the BadgeLabel.

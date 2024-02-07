@@ -4,8 +4,11 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
-class TabBarItemView: UIControl, TokenizedControlInternal {
+class TabBarItemView: UIControl, TokenizedControl {
     let item: TabBarItem
 
     typealias TokenSetKeyType = TabBarItemTokenSet.Tokens
@@ -416,11 +419,11 @@ class TabBarItemView: UIControl, TokenizedControlInternal {
             if let accessibilityLabelBadgeFormatString = item.accessibilityLabelBadgeFormatString {
                 accessibilityLabel = String(format: accessibilityLabelBadgeFormatString, item.title, badgeValue)
             } else {
-                accessibilityLabel = String(format: "Accessibility.TabBarItemView.LabelFormat".localized, item.title, badgeValue)
+                accessibilityLabel = String(format: FluentUIFramework.localized("Accessibility.TabBarItemView.LabelFormat"), item.title, badgeValue)
             }
         } else {
             if isUnreadDotVisible {
-                accessibilityLabel = String(format: "Accessibility.TabBarItemView.UnreadFormat".localized, item.title)
+                accessibilityLabel = String(format: FluentUIFramework.localized("Accessibility.TabBarItemView.UnreadFormat"), item.title)
             } else {
                 accessibilityLabel = item.title
             }

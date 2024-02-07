@@ -4,9 +4,12 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 @objc(MSFTextField)
-public final class FluentTextField: UIView, UITextFieldDelegate, TokenizedControlInternal {
+public final class FluentTextField: UIView, UITextFieldDelegate, TokenizedControl {
     public override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         guard let newWindow else {

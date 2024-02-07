@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: DatePickerHeaderStyle
 
@@ -106,8 +109,8 @@ class DatePickerController: UIViewController, GenericDateTimePicker {
         if !mode.singleSelection && rangePresentation == .paged {
             customTitle = selectionMode == .start ? titles?.startTitle : titles?.endTitle
             customSubtitle = selectionMode == .start ?
-                titles?.startSubtitle ?? "MSDateTimePicker.StartDate".localized :
-                titles?.endSubtitle ?? "MSDateTimePicker.EndDate".localized
+                titles?.startSubtitle ?? FluentUIFramework.localized("MSDateTimePicker.StartDate") :
+                titles?.endSubtitle ?? FluentUIFramework.localized("MSDateTimePicker.EndDate")
         } else {
             customTitle = titles?.dateTitle
             customSubtitle = titles?.dateSubtitle
@@ -254,8 +257,8 @@ class DatePickerController: UIViewController, GenericDateTimePicker {
     }
 
     private func initSegmentedControl() {
-            let items = [SegmentItem(title: customStartTabTitle ?? "MSDateTimePicker.StartDate".localized),
-                         SegmentItem(title: customEndTabTitle ?? "MSDateTimePicker.EndDate".localized)]
+            let items = [SegmentItem(title: customStartTabTitle ?? FluentUIFramework.localized("MSDateTimePicker.StartDate")),
+                         SegmentItem(title: customEndTabTitle ?? FluentUIFramework.localized("MSDateTimePicker.EndDate"))]
             let segmentedControl = SegmentedControl(items: items,
                                                 style: traitCollection.userInterfaceStyle == .dark ? .brandOverNavBarPill : .neutralOverNavBarPill)
             segmentedControl.onSelectAction = { [weak self] (_, index) in

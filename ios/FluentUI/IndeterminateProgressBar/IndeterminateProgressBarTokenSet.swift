@@ -5,6 +5,9 @@
 
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Representation of design tokens for the Indeterminate Progress Bar.
 public class IndeterminateProgressBarTokenSet: ControlTokenSet<IndeterminateProgressBarTokenSet.Tokens> {

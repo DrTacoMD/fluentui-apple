@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 @objc public extension UIViewController {
     var msfNavigationController: NavigationController? {

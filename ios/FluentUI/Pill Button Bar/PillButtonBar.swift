@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: PillButtonBarItem
 
@@ -261,7 +264,7 @@ open class PillButtonBar: UIScrollView {
 
             let shouldAddAccessibilityHint = !self.accessibilityTraits.contains(.tabBar)
             if shouldAddAccessibilityHint {
-                button.accessibilityHint = String.localizedStringWithFormat("Accessibility.MSPillButtonBar.Hint".localized, index + 1, items.count)
+                button.accessibilityHint = String.localizedStringWithFormat(FluentUIFramework.localized("Accessibility.MSPillButtonBar.Hint"), index + 1, items.count)
             }
         }
     }

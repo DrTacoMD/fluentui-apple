@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 public enum SearchBarToken: Int, TokenSetKey {
     /// The background color of the SearchBar

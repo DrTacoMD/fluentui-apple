@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 @objc(MSFBottomCommandingControllerDelegate)
 public protocol BottomCommandingControllerDelegate: AnyObject {
@@ -60,7 +63,7 @@ public protocol BottomCommandingControllerDelegate: AnyObject {
 /// Items from the `expandedListSections` are either presented in an expanded sheet or a popover, depending on the current style.
 ///
 @objc(MSFBottomCommandingController)
-open class BottomCommandingController: UIViewController, TokenizedControlInternal {
+open class BottomCommandingController: UIViewController, TokenizedControl {
 
     /// View controller that will be displayed below the bottom commanding UI.
     @objc public var contentViewController: UIViewController? {
@@ -353,7 +356,7 @@ open class BottomCommandingController: UIViewController, TokenizedControlInterna
     public typealias TokenSetKeyType = BottomCommandingTokenSet.Tokens
     public var tokenSet: BottomCommandingTokenSet = .init()
 
-    var fluentTheme: FluentTheme { return view.fluentTheme }
+    public var fluentTheme: FluentTheme { return view.fluentTheme }
 
     private func setupCommandingLayout(traitCollection: UITraitCollection, forceLayoutPass: Bool = false) {
         if traitCollection.horizontalSizeClass == .regular && traitCollection.userInterfaceIdiom == .pad {
@@ -1115,8 +1118,8 @@ open class BottomCommandingController: UIViewController, TokenizedControlInterna
             static let hidingSpringDuration: TimeInterval = 0.4
             static let hidingSpringDamping: CGFloat = 1.0
 
-            static let moreButtonIcon: UIImage? = UIImage.staticImageNamed("more-24x24")
-            static let moreButtonTitle: String = "CommandingBottomBar.More".localized
+            static let moreButtonIcon: UIImage? = FluentUIFramework.staticImageNamed("more-24x24")
+            static let moreButtonTitle: String = FluentUIFramework.localized("CommandingBottomBar.More")
         }
 
         struct BottomSheet {

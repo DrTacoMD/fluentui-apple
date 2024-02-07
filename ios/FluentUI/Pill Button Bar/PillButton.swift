@@ -4,12 +4,15 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: PillButton
 
 /// A `PillButton` is a button in the shape of a pill that can have two states: on (Selected) and off (not selected)
 @objc(MSFPillButton)
-open class PillButton: UIButton, TokenizedControlInternal {
+open class PillButton: UIButton, TokenizedControl {
 
     open override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         guard self == context.nextFocusedView || self == context.previouslyFocusedView else {
@@ -217,7 +220,7 @@ open class PillButton: UIButton, TokenizedControlInternal {
             if oldValue != isUnreadDotVisible {
                 if isUnreadDotVisible {
                     layer.addSublayer(unreadDotLayer)
-                    accessibilityLabel = String(format: "Accessibility.TabBarItemView.UnreadFormat".localized, pillBarItem.title)
+                    accessibilityLabel = String(format: FluentUIFramework.localized("Accessibility.TabBarItemView.UnreadFormat"), pillBarItem.title)
                 } else {
                     unreadDotLayer.removeFromSuperlayer()
                     accessibilityLabel = pillBarItem.title

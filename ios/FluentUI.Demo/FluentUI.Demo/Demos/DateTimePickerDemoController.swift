@@ -5,6 +5,9 @@
 
 import FluentUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 class DateTimePickerDemoController: DemoController {
     private let dateLabel = Label(textStyle: .body1Strong)

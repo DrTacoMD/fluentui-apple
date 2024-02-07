@@ -5,6 +5,9 @@
 
 import SwiftUI
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Properties available to customize the state of the Indeterminate Progress Bar.
 @objc public protocol MSFIndeterminateProgressBarState {
@@ -42,9 +45,9 @@ public struct IndeterminateProgressBar: View, TokenizedControlView {
             }
 
             return state.isAnimating ?
-                "Accessibility.ActivityIndicator.Animating.label".localized
+                FluentUIFramework.localized("Accessibility.ActivityIndicator.Animating.label")
                 :
-                "Accessibility.ActivityIndicator.Stopped.label".localized
+                FluentUIFramework.localized("Accessibility.ActivityIndicator.Stopped.label")
         }()
 #if DEBUG
         let accessibilityIdentifier: String = "Indeterminate Progress Bar that is \(state.isAnimating ? "in progress" : "progress halted")"
@@ -82,7 +85,7 @@ public struct IndeterminateProgressBar: View, TokenizedControlView {
             })
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Environment(\.layoutDirection) var layoutDirection: LayoutDirection
     @ObservedObject var state: MSFIndeterminateProgressBarStateImpl
     @State var startPoint: UnitPoint = .zero

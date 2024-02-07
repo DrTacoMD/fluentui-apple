@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 // MARK: Tooltip
 // Tooltip Hierarchy:
@@ -17,7 +20,7 @@ import UIKit
 // |--|--layer (ambient and key shadows added as sublayers)
 /// A styled tooltip that is presented anchored to a view.
 @objc(MSFTooltip)
-open class Tooltip: NSObject, TokenizedControlInternal {
+open class Tooltip: NSObject, TokenizedControl {
 
     /// Displays a tooltip based on the current settings, pointing to the supplied anchorView.
     /// If another tooltip view is already showing, it will be dismissed and the new tooltip will be shown.
@@ -275,7 +278,7 @@ open class Tooltip: NSObject, TokenizedControlInternal {
     // MARK: - TokenizedControl
     public typealias TokenSetKeyType = TooltipTokenSet.Tokens
     public var tokenSet: TooltipTokenSet = .init()
-    var fluentTheme: FluentTheme {
+    public var fluentTheme: FluentTheme {
         // Use anchor view to get theme since tooltip view will most likely be nil
         guard let anchorView = anchorView else {
             return FluentTheme.shared

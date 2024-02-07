@@ -5,7 +5,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     func fitIntoSuperview(usingConstraints: Bool = false, usingLeadingTrailing: Bool = true, margins: UIEdgeInsets = .zero, autoWidth: Bool = false, autoHeight: Bool = false) {
         guard let superview = superview else {
             return
@@ -111,7 +111,7 @@ extension UIView {
 
 // MARK: - NSLayoutConstraint and Autolayout Convenience Methods
 
-extension UIView {
+public extension UIView {
     //Uses autolayout to constrain the provided view as a matching subview of the receiver, with insets and optionally respecting the safe area insets on iOS 11.0+
     func contain(view: UIView, withInsets insets: UIEdgeInsets = .zero, respectingSafeAreaInsets respectsSafeAreaInsets: Bool = false) {
         NSLayoutConstraint.contain(view: view, in: self, withInsets: insets, respectingSafeAreaInsets: respectsSafeAreaInsets)

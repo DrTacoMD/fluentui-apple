@@ -4,6 +4,9 @@
 //
 
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Alias Tokens represent a unified set of semantic values to be used by Fluent UI.
 ///

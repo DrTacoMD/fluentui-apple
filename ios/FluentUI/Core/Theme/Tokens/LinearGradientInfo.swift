@@ -6,6 +6,9 @@
 import CoreGraphics
 import Foundation
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Represents a linear gradient as used by FluentUI.
 @objc public class LinearGradientInfo: NSObject {
@@ -43,7 +46,7 @@ import SwiftUI
 
 // MARK: - Extensions
 
-extension LinearGradient {
+public extension LinearGradient {
     /// Internal property to generate a SwiftUI `LinearGradient` from a gradient info.
     init(gradientInfo: LinearGradientInfo) {
         if let locations = gradientInfo.locations {

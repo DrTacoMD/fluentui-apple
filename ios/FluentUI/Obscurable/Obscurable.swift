@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// Obscurable represents any UIView containing class that obscures views behind it. It is used to generically use different styles of background obscuring for modals, as well as provide an interface to turn their effect on or off.
 protocol Obscurable: AnyObject {

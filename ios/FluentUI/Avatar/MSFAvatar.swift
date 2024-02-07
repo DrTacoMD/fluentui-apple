@@ -5,6 +5,9 @@
 
 import UIKit
 import SwiftUI
+#if SWIFT_MODULE
+import FluentUI_Core_iOS
+#endif
 
 /// UIKit wrapper that exposes the SwiftUI Avatar implementation.
 @objc open class MSFAvatar: ControlHostingView {
