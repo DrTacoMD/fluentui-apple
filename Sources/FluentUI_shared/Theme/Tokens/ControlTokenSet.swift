@@ -8,7 +8,7 @@ import UIKit
 import SwiftUI
 
 /// Base class for all Fluent control tokenization.
-public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
+open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// Allows us to index into this token set using square brackets.
     ///
     /// We can use square brackets to both read and write into this `TokenSet`. For example:
@@ -71,7 +71,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     }
 
     /// Initialize the `ControlTokenSet` with an escaping callback for fetching default values.
-    init(_ defaults: @escaping (_ token: T, _ theme: FluentTheme) -> ControlTokenValue) {
+    public init(_ defaults: @escaping (_ token: T, _ theme: FluentTheme) -> ControlTokenValue) {
         self.defaults = defaults
     }
 
@@ -95,7 +95,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// Prepares this token set by installing the current `FluentTheme` if it has changed.
     ///
     /// - Parameter fluentTheme: The current `FluentTheme` for the control's environment.
-    func update(_ fluentTheme: FluentTheme) {
+    public func update(_ fluentTheme: FluentTheme) {
         if fluentTheme != self.fluentTheme {
             self.fluentTheme = fluentTheme
         }
@@ -111,7 +111,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// - Parameter token: The token key to fetch any existing override for.
     ///
     /// - Returns: the active override value for a given token, or nil if none exists.
-    func overrideValue(forToken token: T) -> ControlTokenValue? {
+    public func overrideValue(forToken token: T) -> ControlTokenValue? {
         if let value = valueOverrides?[token] {
             return value
         } else if let value = fluentTheme.tokens(for: type(of: self))?[token] {
@@ -124,7 +124,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     ///
     /// - Parameter value: The value to set as an override.
     /// - Parameter token: The token key whose value should be set.
-    func setOverrideValue(_ value: ControlTokenValue?, forToken token: T) {
+    public func setOverrideValue(_ value: ControlTokenValue?, forToken token: T) {
         if valueOverrides == nil {
             valueOverrides = [:]
         }
@@ -298,12 +298,7 @@ public enum ControlTokenValue {
     // MARK: - Helpers
 
     private var fallbackUIColor: UIColor {
-#if DEBUG
-        // Use our global "Hot Pink" in debug builds, to help identify unintentional conversions.
-        return GlobalTokens.sharedColor(.hotPink, .primary)
-#else
-        return GlobalTokens.neutralColor(.black)
-#endif
+        return UIColor(fallbackColor)
     }
 
     private var fallbackColor: Color {

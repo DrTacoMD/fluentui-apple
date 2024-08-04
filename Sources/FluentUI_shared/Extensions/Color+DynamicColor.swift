@@ -36,7 +36,8 @@ extension Color {
         if #available(iOS 17, *) {
             self.init(dynamicColor)
         } else {
-            self.init(uiColor: UIColor(dynamicColor: dynamicColor))
+			preconditionFailure("UIColor can't live in Shared!")
+            //self.init(uiColor: UIColor(dynamicColor: dynamicColor))
         }
     }
 
@@ -44,7 +45,8 @@ extension Color {
         if #available(iOS 17, *) {
             self.init(dynamicColor)
         } else {
-            self.init(uiColor: UIColor(dynamicColor: dynamicColor))
+			preconditionFailure("UIColor can't live in Shared!")
+            //self.init(uiColor: UIColor(dynamicColor: dynamicColor))
         }
     }
 }
@@ -66,9 +68,10 @@ struct DynamicColor: Hashable {
     }
 
     init(uiColor: UIColor) {
-        self.init(light: Color(uiColor.light),
-                  dark: Color(uiColor.dark),
-                  darkElevated: Color(uiColor.darkElevated))
+		preconditionFailure("UIColor can't live in Shared!")
+//        self.init(light: Color(uiColor.light),
+//                  dark: Color(uiColor.dark),
+//                  darkElevated: Color(uiColor.darkElevated))
     }
 
     let light: Color

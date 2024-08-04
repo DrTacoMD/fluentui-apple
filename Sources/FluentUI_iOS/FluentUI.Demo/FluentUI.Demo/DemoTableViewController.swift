@@ -25,6 +25,8 @@ class DemoTableViewController: UITableViewController {
         tableView.backgroundColor = TableViewCell.tableBackgroundGroupedColor
         tableView.separatorStyle = .none
 
+        navigationItem.largeTitleDisplayMode = .never
+
         configureBarButtonItems()
     }
 

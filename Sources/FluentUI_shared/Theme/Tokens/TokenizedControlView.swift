@@ -16,7 +16,7 @@ public protocol TokenizedControlOverridable: TokenizedControl {
 }
 
 /// Internal union of `TokenizedControlOverridable` and `TokenizedControlInternal` protocols.
-internal protocol TokenizedControlView: TokenizedControlOverridable, TokenizedControlInternal {}
+public protocol TokenizedControlView: TokenizedControlOverridable, TokenizedControlInternal {}
 
 /// Common base type alias for all `state` objects.
 typealias ControlState = NSObject & ObservableObject & Identifiable

@@ -6,6 +6,17 @@
 import SwiftUI
 import FluentUI
 
+/// Definition of a DemoController
+struct DemoDescriptor: Identifiable, Hashable {
+    let title: String
+    let id = UUID()
+}
+
+let demos: [DemoDescriptor] = [
+    DemoDescriptor(title: "Avatar"),
+    DemoDescriptor(title: "Button")
+]
+
 struct ContentView: View {
 #if os(macOS)
     // Until we have a SwiftUI button on macOS, this will have to do.
@@ -20,23 +31,62 @@ struct ContentView: View {
     }
 #endif
 
+    @State private var currentDemo: DemoDescriptor?
+    @State var date = Date()
+
     var body: some View {
-        VStack {
-#if os(macOS)
-            ButtonRepresentable()
-                .fixedSize()
-#else
-            Button(action: {}, label: {
-                HStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                    Text("Hello, world!")
-                }
-            })
-            .buttonStyle(FluentButtonStyle(style: .accent))
-            .controlSize(.extraLarge)
-#endif
+        NavigationSplitView {
+            List(demos, selection: $currentDemo) { demo in
+                NavigationLink(demo.title, value: demo)
+            }
+        } detail: {
+            if let title = currentDemo?.title {
+                DetailView(value: title)
+            } else {
+                Text("Choose a link")
+            }
         }
-        .padding()
     }
+
+    struct DetailView: View {
+        var value: String
+
+        var body: some View {
+            if value == "Button" {
+                buttonDemo
+            } else {
+                avatarDemo
+            }
+        }
+
+        @ViewBuilder
+        var avatarDemo: some View {
+            Avatar(style: .outlinedPrimary, size: .size72)
+        }
+
+        @ViewBuilder
+        var buttonDemo: some View {
+            VStack {
+    #if os(macOS)
+                ButtonRepresentable()
+                    .fixedSize()
+    #else
+                Button(action: {}, label: {
+                    HStack {
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                        Text("Hello, world!")
+                    }
+                })
+                .buttonStyle(FluentButtonStyle(style: .accent))
+                .controlSize(.extraLarge)
+    #endif
+            }
+            .padding()
+        }
+    }
+}
+
+#Preview {
+    ContentView()
 }
