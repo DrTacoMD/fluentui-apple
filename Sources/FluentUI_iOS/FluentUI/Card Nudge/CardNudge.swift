@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Type of callback for both action and dismiss buttons.
@@ -51,7 +52,7 @@ public struct CardNudge: View, TokenizedControlView {
     public typealias TokenSetKeyType = CardNudgeTokenSet.Tokens
     @ObservedObject public var tokenSet: CardNudgeTokenSet
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFCardNudgeStateImpl
 
     @ViewBuilder

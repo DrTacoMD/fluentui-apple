@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// `CircleCutout`: Cutout shape for a circle

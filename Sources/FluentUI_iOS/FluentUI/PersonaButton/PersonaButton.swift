@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Properties that define the appearance of a `PersonaButton`.
@@ -81,7 +82,7 @@ public struct PersonaButton: View, TokenizedControlView {
         .background(Color(tokenSet[.backgroundColor].uiColor))
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Environment(\.sizeCategory) var sizeCategory: ContentSizeCategory
     @ObservedObject var state: MSFPersonaButtonStateImpl
 

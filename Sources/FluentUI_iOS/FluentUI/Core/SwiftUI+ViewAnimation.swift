@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Modifier that provides a completion closure for an animation on a given animatable value.

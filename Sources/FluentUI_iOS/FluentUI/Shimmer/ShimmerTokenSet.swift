@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 /// Shimmer style can be either concealing or revealing.

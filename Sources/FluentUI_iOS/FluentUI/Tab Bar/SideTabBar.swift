@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 /// Delegate protocol to handle user events inside the side tab bar.

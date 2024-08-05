@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Defines the content type of the Heads-up display.
@@ -145,7 +146,7 @@ public struct HeadsUpDisplay: View, TokenizedControlView {
         }
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Binding var isPresented: Bool
     @ObservedObject var state: MSFHUDStateImpl
 

@@ -61,7 +61,7 @@ open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// - Parameter otherTokenSet: The token set we will be pulling values from.
     /// - Parameter mapping: A `Dictionary` that maps our own tokens that we wish to override with
     /// their corresponding tokens in `otherTokenSet`.
-    func setOverrides<U>(from otherTokenSet: ControlTokenSet<U>, mapping: [T: U]) {
+    public func setOverrides<U>(from otherTokenSet: ControlTokenSet<U>, mapping: [T: U]) {
         // Make a copy so we write all the values at once
         var valueOverrideCopy = valueOverrides ?? [:]
         mapping.forEach { (thisToken, otherToken) in
@@ -81,7 +81,7 @@ open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
 
     /// Removes all `onUpdate`-based observing. Useful if you are re-registering the same tokenSet
     /// for a new instance of a control (see `Tooltip` for an example).
-    func deregisterOnUpdate() {
+    public func deregisterOnUpdate() {
         if let notificationObserver {
             NotificationCenter.default.removeObserver(notificationObserver,
                                                       name: .didChangeTheme,
@@ -142,7 +142,7 @@ open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     ///
     /// - Parameter control: The `UIView` instance that wishes to observe.
     /// - Parameter onUpdate: A callback to run whenever `control` should update itself.
-    func registerOnUpdate(for control: UIView, onUpdate: @escaping (() -> Void)) {
+    public func registerOnUpdate(for control: UIView, onUpdate: @escaping (() -> Void)) {
         guard self.onUpdate == nil,
               changeSink == nil,
               notificationObserver == nil else {
@@ -173,7 +173,7 @@ open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     }
 
     /// The current `FluentTheme` associated with this `ControlTokenSet`.
-    var fluentTheme: FluentTheme = FluentTheme.shared {
+    public var fluentTheme: FluentTheme = FluentTheme.shared {
         didSet {
             guard let onUpdate else {
                 return

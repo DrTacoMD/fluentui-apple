@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 public enum BadgeFieldToken: Int, TokenSetKey {

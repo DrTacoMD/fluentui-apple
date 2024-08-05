@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 @objc(MSFBottomSheetControllerDelegate)
@@ -539,7 +540,7 @@ public class BottomSheetController: UIViewController, Shadowable, TokenizedContr
     public typealias TokenSetKeyType = BottomSheetTokenSet.Tokens
     public var tokenSet: BottomSheetTokenSet = .init()
 
-    var fluentTheme: FluentTheme { return view.fluentTheme }
+    public var fluentTheme: FluentTheme { return view.fluentTheme }
 
     private func updateAppearance() {
         updateBackgroundColor()

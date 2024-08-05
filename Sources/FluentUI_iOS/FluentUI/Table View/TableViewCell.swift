@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 // Supported vertical alignment for accessory views in `TableViewCell`

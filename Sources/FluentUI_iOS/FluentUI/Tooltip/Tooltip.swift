@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 // MARK: Tooltip
@@ -275,7 +276,7 @@ open class Tooltip: NSObject, TokenizedControlInternal {
     // MARK: - TokenizedControl
     public typealias TokenSetKeyType = TooltipTokenSet.Tokens
     public var tokenSet: TooltipTokenSet = .init()
-    var fluentTheme: FluentTheme {
+    public var fluentTheme: FluentTheme {
         // Use anchor view to get theme since tooltip view will most likely be nil
         guard let anchorView = anchorView else {
             return FluentTheme.shared

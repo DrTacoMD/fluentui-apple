@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Modifier that presents a SwiftUI View as an additional layer on top of the content View.

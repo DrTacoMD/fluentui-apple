@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 import SwiftUI
 
@@ -14,7 +15,7 @@ public extension FluentTheme {
     /// - Returns: A `UIColor` for the given token.
     @objc(colorForToken:)
     func color(_ token: ColorToken) -> UIColor {
-        return UIColor(dynamicColor: colorTokenSet[token])
+        return UIColor(swiftUIColor(token))
     }
 
     /// Returns an array of colors for the given token.
@@ -23,6 +24,7 @@ public extension FluentTheme {
     /// - Returns: An array of `UIColor` values for the given token.
     @objc(gradientColorsForToken:)
     func gradient(_ token: GradientToken) -> [UIColor] {
-        return gradientTokenSet[token].map { UIColor(dynamicColor: $0) }
+        let colors: [Color] = gradient(token)
+        return colors.map { UIColor($0) }
     }
 }

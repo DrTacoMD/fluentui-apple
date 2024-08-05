@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Properties that can be used to customize the appearance of the `Notification`.
@@ -335,7 +336,7 @@ public struct FluentNotification: View, TokenizedControlView {
         return presentableNotification
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFNotificationStateImpl
 
     private var hasImage: Bool {

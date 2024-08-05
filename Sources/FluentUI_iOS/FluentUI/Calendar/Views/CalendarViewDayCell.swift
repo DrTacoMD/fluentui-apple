@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 // MARK: CalendarViewDayCellTextStyle
@@ -83,7 +84,7 @@ class CalendarViewDayCell: UICollectionViewCell, TokenizedControlInternal {
     let dotView: DotView
 
     typealias TokenSetKeyType = EmptyTokenSet.Tokens
-    let tokenSet: EmptyTokenSet = .init()
+    public let tokenSet: EmptyTokenSet = .init()
 
     override init(frame: CGRect) {
         // Initialize subviews

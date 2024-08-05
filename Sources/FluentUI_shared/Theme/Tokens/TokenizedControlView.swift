@@ -19,7 +19,7 @@ public protocol TokenizedControlOverridable: TokenizedControl {
 public protocol TokenizedControlView: TokenizedControlOverridable, TokenizedControlInternal {}
 
 /// Common base type alias for all `state` objects.
-typealias ControlState = NSObject & ObservableObject & Identifiable
+public typealias ControlState = NSObject & ObservableObject & Identifiable
 
 // MARK: - Extensions
 

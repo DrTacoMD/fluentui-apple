@@ -93,7 +93,7 @@ public struct ActivityIndicator: View, TokenizedControlView {
                    alignment: .center)
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFActivityIndicatorStateImpl
     @State var rotationAngle: Double = 0.0
 

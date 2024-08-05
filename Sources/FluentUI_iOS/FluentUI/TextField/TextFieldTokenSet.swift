@@ -4,6 +4,7 @@
 //
 
 import CoreFoundation
+import FluentUI_shared
 
 /// The predefined states of the `FluentTextField`.
 public enum FluentTextFieldState: Int, CaseIterable {

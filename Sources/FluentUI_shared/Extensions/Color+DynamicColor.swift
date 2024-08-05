@@ -36,7 +36,7 @@ extension Color {
         if #available(iOS 17, *) {
             self.init(dynamicColor)
         } else {
-			preconditionFailure("UIColor can't live in Shared!")
+            preconditionFailure("UIColor can't live in Shared!")
             //self.init(uiColor: UIColor(dynamicColor: dynamicColor))
         }
     }
@@ -45,14 +45,14 @@ extension Color {
         if #available(iOS 17, *) {
             self.init(dynamicColor)
         } else {
-			preconditionFailure("UIColor can't live in Shared!")
+            preconditionFailure("UIColor can't live in Shared!")
             //self.init(uiColor: UIColor(dynamicColor: dynamicColor))
         }
     }
 }
 
 /// A container that stores a dynamic set of `Color` values.
-struct DynamicColor: Hashable {
+public struct DynamicColor: Hashable {
 
     /// Creates a custom `ShapeStyle` that stores a dynamic set of `Color` values.
     ///
@@ -68,21 +68,21 @@ struct DynamicColor: Hashable {
     }
 
     init(uiColor: UIColor) {
-		preconditionFailure("UIColor can't live in Shared!")
+        preconditionFailure("UIColor can't live in Shared!")
 //        self.init(light: Color(uiColor.light),
 //                  dark: Color(uiColor.dark),
 //                  darkElevated: Color(uiColor.darkElevated))
     }
 
-    let light: Color
-    let dark: Color?
-    let darkElevated: Color?
+    public let light: Color
+    public let dark: Color?
+    public let darkElevated: Color?
 }
 
 @available(iOS 17, *)
 extension DynamicColor: ShapeStyle {
     /// Evaluate to a resolved `Color` (in the form of a `ShapeStyle`) given the current `environment`.
-    func resolve(in environment: EnvironmentValues) -> Color.Resolved {
+    public func resolve(in environment: EnvironmentValues) -> Color.Resolved {
         if environment.colorScheme == .dark {
             if environment.isPresented, let darkElevated = darkElevated {
                 return darkElevated.resolve(in: environment)

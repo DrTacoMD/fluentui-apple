@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 @objc(MSFBottomCommandingControllerDelegate)
@@ -353,7 +354,7 @@ open class BottomCommandingController: UIViewController, TokenizedControlInterna
     public typealias TokenSetKeyType = BottomCommandingTokenSet.Tokens
     public var tokenSet: BottomCommandingTokenSet = .init()
 
-    var fluentTheme: FluentTheme { return view.fluentTheme }
+    public var fluentTheme: FluentTheme { return view.fluentTheme }
 
     private func setupCommandingLayout(traitCollection: UITraitCollection, forceLayoutPass: Bool = false) {
         if traitCollection.horizontalSizeClass == .regular && traitCollection.userInterfaceIdiom == .pad {

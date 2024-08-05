@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 
 // MARK: DrawerResizingBehavior
@@ -595,7 +596,7 @@ open class DrawerController: UIViewController, TokenizedControlInternal {
     public typealias TokenSetKeyType = DrawerTokenSet.Tokens
     public var tokenSet: DrawerTokenSet = .init()
 
-    var fluentTheme: FluentTheme { return view.fluentTheme }
+    public var fluentTheme: FluentTheme { return view.fluentTheme }
 
     // Change of presentation direction's orientation is not supported
     private func presentationDirection(for view: UIView) -> DrawerPresentationDirection {

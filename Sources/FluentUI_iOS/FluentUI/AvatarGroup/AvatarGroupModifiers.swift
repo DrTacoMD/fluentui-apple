@@ -3,8 +3,9 @@
 //  Licensed under the MIT License.
 //
 
-import UIKit
+import FluentUI_shared
 import SwiftUI
+import UIKit
 
 public extension AvatarGroup {
 }

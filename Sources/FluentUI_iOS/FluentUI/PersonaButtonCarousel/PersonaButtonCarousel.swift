@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import SwiftUI
 
 /// Properties that define the appearance of a `PersonaButtonCarousel`.
@@ -112,7 +113,7 @@ public struct PersonaButtonCarousel: View, TokenizedControlView {
         .background(Color(tokenSet[.backgroundColor].uiColor))
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @ObservedObject var state: MSFPersonaButtonCarouselStateImpl
 }
 

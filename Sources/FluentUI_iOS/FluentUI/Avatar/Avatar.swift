@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_shared
 import UIKit
 import SwiftUI
 
@@ -434,7 +435,7 @@ public struct Avatar: View, TokenizedControlView, Equatable {
         return AvatarTokenSet.avatarSize(state.size)
     }
 
-    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @Environment(\.fluentTheme) public var fluentTheme: FluentTheme
     @Environment(\.layoutDirection) var layoutDirection: LayoutDirection
     @ObservedObject var state: MSFAvatarStateImpl
 
