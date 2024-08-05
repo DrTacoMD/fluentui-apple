@@ -44,6 +44,7 @@ struct ContentView: View {
                 DetailView(value: title)
             } else {
                 Text("Choose a link")
+                    .font(Font(FluentTheme.shared.typography(.largeTitle)))
             }
         }
     }
