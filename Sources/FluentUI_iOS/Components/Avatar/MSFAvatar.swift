@@ -3,8 +3,10 @@
 //  Licensed under the MIT License.
 //
 
-import UIKit
+import FluentUI_common
 import SwiftUI
+import FluentUI_common
+import UIKit
 
 /// UIKit wrapper that exposes the SwiftUI Avatar implementation.
 @objc open class MSFAvatar: ControlHostingView {

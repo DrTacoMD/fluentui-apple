@@ -3,7 +3,9 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import SwiftUI
+import FluentUI_common
 import UIKit
 
 /// Pre-defined sizes of the Activity Indicator.

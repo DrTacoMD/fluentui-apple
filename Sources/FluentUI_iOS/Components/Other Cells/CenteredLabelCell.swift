@@ -3,12 +3,13 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: CenteredLabelCell
 
 @objc(MSFCenteredLabelCell)
-open class CenteredLabelCell: UITableViewCell, TokenizedControlInternal {
+open class CenteredLabelCell: UITableViewCell, TokenizedControl {
     public static let identifier: String = "CenteredLabelCell"
 
     public typealias TokenSetKeyType = TableViewCellTokenSet.Tokens

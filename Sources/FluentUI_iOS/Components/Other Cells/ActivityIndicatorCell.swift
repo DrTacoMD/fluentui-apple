@@ -3,12 +3,13 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: ActivityIndicatorCell
 
 @objc(MSFActivityIndicatorCell)
-open class ActivityIndicatorCell: UITableViewCell, TokenizedControlInternal {
+open class ActivityIndicatorCell: UITableViewCell, TokenizedControl {
     public static let identifier: String = "ActivityIndicatorCell"
 
     @objc public var backgroundStyleType: TableViewCellBackgroundStyleType = .plain {

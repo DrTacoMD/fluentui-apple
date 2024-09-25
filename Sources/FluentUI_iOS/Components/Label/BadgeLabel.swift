@@ -3,11 +3,12 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: BadgeLabel
 
-class BadgeLabel: UILabel, TokenizedControlInternal {
+class BadgeLabel: UILabel, TokenizedControl {
     var style: BadgeLabelStyle = .system {
         didSet {
             updateColors()

@@ -3,12 +3,13 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: - ResizingHandleView
 
 @objc(MSFResizingHandleView)
-open class ResizingHandleView: UIView, TokenizedControlInternal {
+open class ResizingHandleView: UIView, TokenizedControl {
     @objc public static let height: CGFloat = 20
 
     private lazy var markLayer: CALayer = {

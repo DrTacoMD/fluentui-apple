@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 @objc(MSFBottomCommandingControllerDelegate)
@@ -60,7 +61,7 @@ public protocol BottomCommandingControllerDelegate: AnyObject {
 /// Items from the `expandedListSections` are either presented in an expanded sheet or a popover, depending on the current style.
 ///
 @objc(MSFBottomCommandingController)
-open class BottomCommandingController: UIViewController, TokenizedControlInternal {
+open class BottomCommandingController: UIViewController, TokenizedControl {
 
     /// View controller that will be displayed below the bottom commanding UI.
     @objc public var contentViewController: UIViewController? {

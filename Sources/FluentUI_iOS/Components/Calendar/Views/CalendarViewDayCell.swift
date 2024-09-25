@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: CalendarViewDayCellTextStyle
@@ -50,7 +51,7 @@ let calendarViewDayCellVisualStateTransitionDuration: TimeInterval = 0.3
 
 // MARK: - CalendarViewDayCell
 
-class CalendarViewDayCell: UICollectionViewCell, TokenizedControlInternal {
+class CalendarViewDayCell: UICollectionViewCell, TokenizedControl {
     struct Constants {
         static let borderWidth: CGFloat = 0.5
         static let dotDiameter: CGFloat = 6.0

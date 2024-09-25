@@ -3,7 +3,10 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
+import FluentUI_common
 import SwiftUI
+import FluentUI_common
 import UIKit
 
 /// Properties available to customize the state of the Activity Indicator state

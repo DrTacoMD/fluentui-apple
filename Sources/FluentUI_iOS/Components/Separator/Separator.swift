@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: - SeparatorOrientation
@@ -16,7 +17,7 @@ public enum SeparatorOrientation: Int {
 // MARK: - Separator
 
 @objc(MSFSeparator)
-open class Separator: UIView, TokenizedControlInternal {
+open class Separator: UIView, TokenizedControl {
     public typealias TokenSetKeyType = SeparatorTokenSet.Tokens
     lazy public var tokenSet: SeparatorTokenSet = .init()
 

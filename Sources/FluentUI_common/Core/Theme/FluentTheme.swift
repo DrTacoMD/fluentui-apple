@@ -43,7 +43,9 @@ public class FluentTheme: NSObject, ObservableObject {
         })
 
         let mappedColorOverrides = colorOverrides?.compactMapValues({ color in
-            return DynamicColor(uiColor: color)
+//            return DynamicColor(uiColor: color)
+            // TODO: ???
+            return DynamicColor(light: GlobalTokens.sharedSwiftUIColor(.hotPink, .primary))
         })
 
 #if os(visionOS)

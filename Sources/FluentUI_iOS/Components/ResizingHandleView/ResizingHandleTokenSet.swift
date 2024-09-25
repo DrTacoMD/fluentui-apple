@@ -3,8 +3,10 @@
 //  Licensed under the MIT License.
 //
 
-import UIKit
+import FluentUI_common
 import SwiftUI
+import FluentUI_common
+import UIKit
 
 public enum ResizingHandleToken: Int, TokenSetKey {
     /// Defines the color of the mark of the `ResizingHandle`.

@@ -4,11 +4,13 @@
 //
 
 import Combine
-import UIKit
 import SwiftUI
+#if os(iOS) || os(visionOS)
+import UIKit
+#endif // os(iOS) || os(visionOS)
 
 /// Base class for all Fluent control tokenization.
-public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
+open class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// Allows us to index into this token set using square brackets.
     ///
     /// We can use square brackets to both read and write into this `TokenSet`. For example:
@@ -71,7 +73,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     }
 
     /// Initialize the `ControlTokenSet` with an escaping callback for fetching default values.
-    init(_ defaults: @escaping (_ token: T, _ theme: FluentTheme) -> ControlTokenValue) {
+    public init(_ defaults: @escaping (_ token: T, _ theme: FluentTheme) -> ControlTokenValue) {
         self.defaults = defaults
     }
 
@@ -95,7 +97,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     /// Prepares this token set by installing the current `FluentTheme` if it has changed.
     ///
     /// - Parameter fluentTheme: The current `FluentTheme` for the control's environment.
-    func update(_ fluentTheme: FluentTheme) {
+    public func update(_ fluentTheme: FluentTheme) {
         if fluentTheme != self.fluentTheme {
             self.fluentTheme = fluentTheme
         }
@@ -142,7 +144,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     ///
     /// - Parameter control: The `UIView` instance that wishes to observe.
     /// - Parameter onUpdate: A callback to run whenever `control` should update itself.
-    func registerOnUpdate(for control: UIView, onUpdate: @escaping (() -> Void)) {
+    public func registerOnUpdate(for control: UIView, onUpdate: @escaping (() -> Void)) {
         guard self.onUpdate == nil,
               changeSink == nil,
               notificationObserver == nil else {
@@ -173,7 +175,7 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
     }
 
     /// The current `FluentTheme` associated with this `ControlTokenSet`.
-    var fluentTheme: FluentTheme = FluentTheme.shared {
+    public var fluentTheme: FluentTheme = FluentTheme.shared {
         didSet {
             guard let onUpdate else {
                 return
@@ -204,9 +206,11 @@ public class ControlTokenSet<T: TokenSetKey>: ObservableObject {
 /// Union-type enumeration of all possible token values to be stored by a `ControlTokenSet`.
 public enum ControlTokenValue {
     case float(() -> CGFloat)
-    case uiColor(() -> UIColor)
     case color(() -> Color)
+#if os(iOS) || os(visionOS)
+    case uiColor(() -> UIColor)
     case uiFont(() -> UIFont)
+#endif // os(iOS) || os(visionOS)
     case shadowInfo(() -> ShadowInfo)
 
     public var float: CGFloat {
@@ -215,17 +219,6 @@ public enum ControlTokenValue {
         } else {
             assertionFailure("Cannot convert token to CGFloat: \(self)")
             return 0.0
-        }
-    }
-
-    public var uiColor: UIColor {
-        if case .uiColor(let uiColor) = self {
-            return uiColor()
-        } else if case .color(let color) = self {
-            return UIColor(color())
-        } else {
-            assertionFailure("Cannot convert token to UIColor: \(self)")
-            return fallbackUIColor
         }
     }
 
@@ -240,6 +233,18 @@ public enum ControlTokenValue {
         }
     }
 
+#if os(iOS) || os(visionOS)
+    public var uiColor: UIColor {
+        if case .uiColor(let uiColor) = self {
+            return uiColor()
+        } else if case .color(let color) = self {
+            return UIColor(color())
+        } else {
+            assertionFailure("Cannot convert token to UIColor: \(self)")
+            return fallbackUIColor
+        }
+    }
+
     public var uiFont: UIFont {
         if case .uiFont(let uiFont) = self {
             return uiFont()
@@ -248,17 +253,18 @@ public enum ControlTokenValue {
             return UIFont()
         }
     }
+#endif // os(iOS) || os(visionOS)
 
     public var shadowInfo: ShadowInfo {
         if case .shadowInfo(let shadowInfo) = self {
             return shadowInfo()
         } else {
             assertionFailure("Cannot convert token to ShadowInfo: \(self)")
-            return ShadowInfo(keyColor: fallbackUIColor,
+            return ShadowInfo(keyColor: DynamicColor(light: fallbackColor),
                               keyBlur: 10.0,
                               xKey: 10.0,
                               yKey: 10.0,
-                              ambientColor: fallbackUIColor,
+                              ambientColor: DynamicColor(light: fallbackColor),
                               ambientBlur: 10.0,
                               xAmbient: 10.0,
                               yAmbient: 10.0)
@@ -284,10 +290,14 @@ public enum ControlTokenValue {
         switch value {
         case let number as NSNumber:
             self = .float { CGFloat(number.doubleValue) }
-        case let color as UIColor:
-            self = .uiColor { color }
+        case let color as Color:
+            self = .color { color }
+#if os(iOS) || os(visionOS)
+        case let uiColor as UIColor:
+            self = .uiColor { uiColor }
         case let font as UIFont:
             self = .uiFont { font }
+#endif // os(iOS) || os(visionOS)
         case let shadowInfo as ShadowInfo:
             self = .shadowInfo { shadowInfo }
         default:
@@ -297,14 +307,16 @@ public enum ControlTokenValue {
 
     // MARK: - Helpers
 
+#if os(iOS) || os(visionOS)
     private var fallbackUIColor: UIColor {
 #if DEBUG
         // Use our global "Hot Pink" in debug builds, to help identify unintentional conversions.
-        return GlobalTokens.sharedColor(.hotPink, .primary)
+        return UIColor(GlobalTokens.sharedSwiftUIColor(.hotPink, .primary))
 #else
         return GlobalTokens.neutralColor(.black)
 #endif
     }
+#endif // os(iOS) || os(visionOS)
 
     private var fallbackColor: Color {
 #if DEBUG
@@ -323,12 +335,14 @@ extension ControlTokenValue: CustomStringConvertible {
         switch self {
         case .float(let float):
             return "ControlTokenValue.float (\(float())"
-        case .uiColor(let uiColor):
-            return "ControlTokenValue.uiColor (\(uiColor())"
         case .color(let color):
             return "ControlTokenValue.color (\(color())"
+#if os(iOS) || os(visionOS)
+        case .uiColor(let uiColor):
+            return "ControlTokenValue.uiColor (\(uiColor())"
         case .uiFont(let uiFont):
             return "ControlTokenValue.uiFont (\(uiFont())"
+#endif // os(iOS) || os(visionOS)
         case .shadowInfo(let shadowInfo):
             return "ControlTokenValue.shadowInfo (\(shadowInfo())"
         }
