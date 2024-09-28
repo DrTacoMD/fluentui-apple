@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 /// An animation synchronizer syncs homogeneous layer animations by calculating the appropriate timeOffset

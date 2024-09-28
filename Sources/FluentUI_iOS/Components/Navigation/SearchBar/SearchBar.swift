@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: SearchBarDelegate
@@ -22,7 +23,7 @@ public protocol SearchBarDelegate: AnyObject {
 
 /// Drop-in replacement for UISearchBar that allows for more customization
 @objc(MSFSearchBar)
-open class SearchBar: UIView, TokenizedControlInternal {
+open class SearchBar: UIView, TokenizedControl {
     @objc open var hidesNavigationBarDuringSearch: Bool = true {
         didSet {
             if oldValue != hidesNavigationBarDuringSearch && isActive {

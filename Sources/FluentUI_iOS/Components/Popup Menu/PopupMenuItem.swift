@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 /**
@@ -10,6 +11,10 @@ import UIKit
  */
 @objc(MSFPopupMenuItem)
 open class PopupMenuItem: NSObject, PopupMenuTemplateItem, FluentThemeable {
+    public func isApplicableThemeChange(_ notification: Notification) -> Bool {
+        return true
+    }
+    
     public var fluentTheme: FluentTheme
 
     @objc public var cellClass: PopupMenuItemTemplateCell.Type

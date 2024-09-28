@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+@_exported import FluentUI_common
 #if os(iOS)
 @_exported import FluentUI_ios
 #elseif os(macOS)

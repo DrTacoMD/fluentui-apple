@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: TwoLineTitleViewDelegate
@@ -17,7 +18,7 @@ public protocol TwoLineTitleViewDelegate: AnyObject {
 // MARK: - TwoLineTitleView
 
 @objc(MSFTwoLineTitleView)
-open class TwoLineTitleView: UIView, TokenizedControlInternal {
+open class TwoLineTitleView: UIView, TokenizedControl {
     @objc(MSFTwoLineTitleViewStyle)
     public enum Style: Int {
         case primary

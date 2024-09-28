@@ -4,6 +4,7 @@
 //
 
 import QuartzCore
+import FluentUI_common
 import UIKit
 
 extension CALayer {

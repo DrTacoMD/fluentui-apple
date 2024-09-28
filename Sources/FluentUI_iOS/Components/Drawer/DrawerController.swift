@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: DrawerResizingBehavior
@@ -97,7 +98,7 @@ public protocol DrawerControllerDelegate: AnyObject {
  */
 
 @objc(MSFDrawerController)
-open class DrawerController: UIViewController, TokenizedControlInternal {
+open class DrawerController: UIViewController, TokenizedControl {
     /// DrawerController colors with obj-c support
     @objc public static func drawerBackgroundColor(fluentTheme: FluentTheme?) -> UIColor {
         let theme = fluentTheme ?? .shared

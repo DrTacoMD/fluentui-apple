@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // Supported vertical alignment for accessory views in `TableViewCell`
@@ -34,7 +35,7 @@ Specify `accessoryType` on setup to show either a disclosure indicator or a `det
 NOTE: This cell implements its own custom separator. Make sure to remove the UITableViewCell built-in separator by setting `separatorStyle = .none` on your table view. To remove the cell's custom separator set `bottomSeparatorType` to `.none`.
 */
 @objc(MSFTableViewCell)
-open class TableViewCell: UITableViewCell, TokenizedControlInternal {
+open class TableViewCell: UITableViewCell, TokenizedControl {
     @objc(MSFTableViewCellSeparatorType)
     public enum SeparatorType: Int {
         case none

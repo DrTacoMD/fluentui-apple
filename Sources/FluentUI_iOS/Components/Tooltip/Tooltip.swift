@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+import FluentUI_common
 import UIKit
 
 // MARK: Tooltip
@@ -17,7 +18,7 @@ import UIKit
 // |--|--layer (ambient and key shadows added as sublayers)
 /// A styled tooltip that is presented anchored to a view.
 @objc(MSFTooltip)
-open class Tooltip: NSObject, TokenizedControlInternal {
+open class Tooltip: NSObject, TokenizedControl {
 
     /// Displays a tooltip based on the current settings, pointing to the supplied anchorView.
     /// If another tooltip view is already showing, it will be dismissed and the new tooltip will be shown.
